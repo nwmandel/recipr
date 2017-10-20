@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-// Load the Vue SSR plugin. Don't forget this. :P
 const VueSSRPlugin = require('vue-ssr-webpack-plugin')
 
 module.exports = {
