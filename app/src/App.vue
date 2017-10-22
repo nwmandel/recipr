@@ -7,6 +7,7 @@
     </v-toolbar>
     
     <main>
+    <h2>{{ serverdata }}</h2>
       <v-content>
         <v-container fluid>
           <v-slide-y-transition mode="out-in">
@@ -33,11 +34,27 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data () {
       return {
+        serverdata: '',
         title: 'Recipr'
       }
+    },
+
+    mounted() {
+      axios.get('http://localhost:8081/api')
+        .then((res) => {
+          console.log(res.data);
+          this.serverdata = res.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
+
+  
   }
 </script>
