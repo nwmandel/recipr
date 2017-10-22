@@ -7,7 +7,6 @@
     </v-toolbar>
 
     <main>
-    <p>Message from server: "{{recipe_result}}"</p>
     <h2>{{ serverdata }}</h2>
       <v-content>
         <v-container fluid>
@@ -48,8 +47,8 @@
     mounted() {
       axios.get('http://localhost:8081/api')
         .then((res) => {
-        console.log(res.data);
-        this.serverdata = res.data;
+          console.log(res.data);
+          this.serverdata = res.data;
         })
         .catch((error) => {
           console.log(error);

@@ -21,6 +21,7 @@ const bundleRenderer = createBundleRenderer(
 // serve static assets from ./dist on /dist route
 server.use('../dist', express.static('dist'));
 
+/* might need this later to pre render displays
 // render all other routes with bundleRenderer
 server.get('*', (req, res) => {
 	bundleRenderer
@@ -28,7 +29,7 @@ server.get('*', (req, res) => {
 	  // the argument passed as context to main.server.js
 	  .renderToStream({url: req.path})
 	  .pipe(res);
-});
+});*/
 
 // Function to get spoonacular website recipe
 // Input: query string, the result of the search bar
@@ -47,7 +48,7 @@ function getSiteRecipe(query) {
 
 
 // simple test to host data on server
-server.get('http://localhost:8081/api', (req, res) => {
+server.get('/api', (req, res) => {
 	res.send("hello from server");
 });
 
@@ -56,5 +57,5 @@ server.get('http://localhost:8081/api', (req, res) => {
 // bind server to this port
 const bind = process.env.PORT || 8081;
 server.listen(bind, () => {
-	console.log('Server listening at ${bind}');
+	console.log('Server listening at '+ bind);
 });
