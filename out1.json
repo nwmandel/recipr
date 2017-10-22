@@ -77,3 +77,4 @@
        link: 'https://spoonacular.com/recipes/cornmeal-fried-okra-tomatillos-and-tomatoes-26209',
        kvtable: '<table><tr><td>Cost</td><td>$1.58 per serving</td></tr><tr><td>Calories</td><td>283 Calories</td></tr><tr><td>Protein</td><td>8g Protein</td></tr><tr><td>Fat</td><td>11g Total Fat</td></tr><tr><td>Carbs</td><td>38g Carbs</td></tr></table>',
        dataPoints: [Array] } ] }
+   
