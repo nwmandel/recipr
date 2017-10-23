@@ -10,19 +10,26 @@
     <h2>{{ serverdata }}</h2>
       <v-content>
         <v-container fluid>
-          <v-slide-y-transition mode="out-in">
-            <v-layout column align-center>
-              <img src="/public/v.png" alt="Vuetify.js" class="mb-5" />
-              <blockquote class>
-                &#8220;Yeeee!!.&#8221;
-                <footer>
-                  <small>
-                    <em>&mdash;Sausage Party</em>
-                  </small>
-                </footer>
-              </blockquote>
-            </v-layout>
-          </v-slide-y-transition>
+
+            <h2 class="text-xs-center">Search by</h2>
+            
+            <v-container grid-list-md text-xs-center>
+              <v-layout row justify-center>
+                  <v-card-text>
+                    <div>
+                      <v-btn color="primary" dark>Recipe</v-btn>
+                    </div>
+                  </v-card-text>
+
+                  <v-card-text>
+                    <div>
+                      <v-btn color="primary" dark>Ingredients</v-btn>
+                    </div>
+                  </v-card-text>
+                </v-card>
+              </v-layout>
+            </v-container>
+          
         </v-container>
       </v-content>
     </main>
