@@ -29,6 +29,24 @@
                 </v-card>
               </v-layout>
             </v-container>
+
+            <v-card-text>
+              <v-container fluid>
+                <v-layout row>
+                  <v-flex xs4>
+                    <v-subheader>Search</v-subheader>
+                  </v-flex>
+                  <v-flex xs8>
+                    <v-text-field
+                      label="Recipe/Ingredients"
+                      v-model="input">
+                    </v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card-text>
+            <p transition='expand'>Input is: {{input}}</p>
+
           
         </v-container>
       </v-content>
@@ -47,7 +65,8 @@
     data () {
       return {
         serverdata: '',
-        title: 'Recipr'
+        title: 'Recipr',
+        input: ''
       }
     },
 
