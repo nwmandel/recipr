@@ -54,6 +54,20 @@
                 </v-container>
               </v-card-text>
               <p>Input is {{input}}</p>
+              
+              
+
+              <!--Search Button-->
+              <v-container fluid grid-list-xl>
+                <v-layout row justify-space-around>
+                  <v-flex xs2>
+                    <v-btn color="info" class="button-xs-center">Search  
+                      <v-icon>search</v-icon>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+
             </v-container>  
         </v-container>
 
