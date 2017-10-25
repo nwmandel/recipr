@@ -54,14 +54,14 @@
                 </v-container>
               </v-card-text>
               <p>Input is {{input}}</p>
-              
+              <p>Query Result is {{qres}}</p>
               
 
               <!--Search Button-->
               <v-container fluid grid-list-xl>
                 <v-layout row justify-space-around>
                   <v-flex xs2>
-                    <v-btn color="info" class="button-xs-center">Search  
+                    <v-btn color="info" class="button-xs-center" v-on:click="getSiteRecipe(input)">Search  
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -82,12 +82,20 @@
 
 <script>
   import axios from 'axios';
-  
+  const mkey = require('../../mashapekey.json');
+  var config = {
+    headers: {
+      'X-Mashape-Key': mkey.testing,
+      'Accept': 'application/json'
+    }
+  };
+
   export default {
     data () {
       return {
         serverdata: '',
         title: 'Recipr',
+        qres: [],
         input: '',
         buttonClicked: false,
         lastClicked: ''
@@ -95,15 +103,13 @@
     },
 
 
-    mounted() {
-      axios.get('http://localhost:8081/api')
-        .then((res) => {
-          console.log(res.data);
-          this.serverdata = input;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
+    methods: {
+      getSiteRecipe: function(query) {
+          axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
+            .then(res => {this.qres = res.data.res})
+            console.log(this.qres);
+            this.input = qres;
+        }
+    }
     }
 </script>
