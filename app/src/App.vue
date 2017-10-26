@@ -95,7 +95,7 @@
       return {
         serverdata: '',
         title: 'Recipr',
-        qres: [],
+        qres: '',
         input: '',
         buttonClicked: false,
         lastClicked: ''
@@ -106,9 +106,8 @@
     methods: {
       getSiteRecipe: function(query) {
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
-            .then(res => {this.qres = res.data.res})
-            console.log(this.qres);
-            this.input = qres;
+            .then(res => {this.qres = res.data})
+            console.log(res.data);
         }
     }
     }
