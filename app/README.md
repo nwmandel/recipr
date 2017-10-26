@@ -1,4 +1,4 @@
-# my-project2
+# recipr Development
 
 > A Vue.js project
 
