@@ -106,6 +106,12 @@
                     <v-card flat>
                       <v-card-text>{{props.item.calories}}</v-card-text>
                     </v-card>
+                    <v-card flat>
+                      <v-card-text>
+                        <img :src="props.item.image">
+                      </v-card-text>
+                    </v-card>
+
                   </template>
                 </v-data-table>
             </div>
@@ -173,7 +179,8 @@
             protein: 4.0,
             sodium: 87,
             calcium: '14%',
-            iron: '1%'
+            iron: '1%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -184,7 +191,8 @@
             protein: 4.3,
             sodium: 129,
             calcium: '8%',
-            iron: '1%'
+            iron: '1%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -195,7 +203,8 @@
             protein: 6.0,
             sodium: 337,
             calcium: '6%',
-            iron: '7%'
+            iron: '7%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -206,7 +215,8 @@
             protein: 4.3,
             sodium: 413,
             calcium: '3%',
-            iron: '8%'
+            iron: '8%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -217,7 +227,8 @@
             protein: 3.9,
             sodium: 327,
             calcium: '7%',
-            iron: '16%'
+            iron: '16%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -228,7 +239,8 @@
             protein: 0.0,
             sodium: 50,
             calcium: '0%',
-            iron: '0%'
+            iron: '0%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -239,7 +251,8 @@
             protein: 0,
             sodium: 38,
             calcium: '0%',
-            iron: '2%'
+            iron: '2%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -250,7 +263,8 @@
             protein: 6.5,
             sodium: 562,
             calcium: '0%',
-            iron: '45%'
+            iron: '45%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -261,7 +275,8 @@
             protein: 4.9,
             sodium: 326,
             calcium: '2%',
-            iron: '22%'
+            iron: '22%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           },
           {
             value: false,
@@ -272,7 +287,8 @@
             protein: 7,
             sodium: 54,
             calcium: '12%',
-            iron: '6%'
+            iron: '6%',
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
           }
         ]
       }
@@ -297,7 +313,8 @@
           protein: 9000,
           sodium: 9000,
           calcium: '9000%',
-          iron: '9000%'
+          iron: '9000%',
+          image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
         });
       }
 
