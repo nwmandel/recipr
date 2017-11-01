@@ -26,6 +26,12 @@
                       <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ingredients'">Ingredients</v-btn>
                     </div>
                   </v-card-text>
+
+                  <v-card-text>
+                    <div>
+                      <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ethnicity'">Ethnicity</v-btn>
+                    </div>
+                  </v-card-text>
                 </v-card>
               </v-layout>
             </v-container>
@@ -38,6 +44,9 @@
                     <v-flex xs4>
                       <v-subheader>Search</v-subheader>
                     </v-flex>
+                    <v-flex xs4 v-if="lastClicked == 'Ethnicity'">
+                      <v-subheader>Search: Enter 1 (or more, separated by a comma) of the following: african, chinese, japanese, korean, vietnamese, thai, indian, british, irish, french, italian, mexican, spanish, middle eastern, jewish, american, cajun, southern, greek, german, nordic, eastern european, caribbean, or latin american.</v-subheader>
+                    </v-flex>
                     <v-flex xs8>
                       
                       <v-text-field v-if="lastClicked === 'Recipe'"
@@ -47,6 +56,11 @@
 
                        <v-text-field v-if="lastClicked == 'Ingredients'"
                         label="Ingredients"
+                        v-model="input">
+                      </v-text-field>
+
+                       <v-text-field v-if="lastClicked == 'Ethnicity'"
+                        label="Ethnicity"
                         v-model="input">
                       </v-text-field>
                     
@@ -72,6 +86,15 @@
                 <v-layout row justify-space-around>
                   <v-flex xs2>
                     <v-btn color="info" class="button-xs-center" v-on:click="getIngredientsRecipe(input)">Search   
+                      <v-icon>search</v-icon>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+              <v-container fluid grid-list-xl v-if="lastClicked == 'Ethnicity'">
+                <v-layout row justify-space-around>
+                  <v-flex xs2>
+                    <v-btn color="info" class="button-xs-center" v-on:click="getEthnicityRecipe(input)">Search
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -301,6 +324,9 @@
             console.log(res.data);
       },
       getIngredientsRecipe: function(query) {
+        this.title = query;
+      },
+      getEthnicityRecipe: function(query) {
         this.title = query;
       },
       addItem: function() {
