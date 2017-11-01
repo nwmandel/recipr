@@ -89,6 +89,11 @@
                   </template>
                 </v-data-table>
             </div>
+            
+            <div class="text-xs-center">
+              <v-btn round color="primary" dark
+              v-on:click="addItem">Add</v-btn>
+            </div>
 
         </v-container>
       </v-content>
@@ -258,7 +263,21 @@
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
             .then(res => {this.qres = res.data})
             console.log(res.data);
-        }
+      },
+      addItem: function() {
+        this.items.push({
+          value: false,
+          name: 'AddingExample',
+          calories: '9000',
+          fat: '9000',
+          carbs: 9000,
+          protein: 9000,
+          sodium: 9000,
+          calcium: '9000%',
+          iron: '9000%'
+        });
+      }
+
     }
   }
 
