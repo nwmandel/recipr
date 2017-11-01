@@ -75,17 +75,28 @@
                     v-bind:headers="headers"
                     :items="items"
                     hide-actions
-                    class="elevation-1"
+                    class="elevation-2"
+                    item-key="name"
                   >
                   <template slot="items" slot-scope="props">
-                    <td>{{ props.item.name }}</td>
-                    <td class="text-xs-right">{{ props.item.calories }}</td>
-                    <td class="text-xs-right">{{ props.item.fat }}</td>
-                    <td class="text-xs-right">{{ props.item.carbs }}</td>
-                    <td class="text-xs-right">{{ props.item.protein }}</td>
-                    <td class="text-xs-right">{{ props.item.sodium }}</td>
-                    <td class="text-xs-right">{{ props.item.calcium }}</td>
-                    <td class="text-xs-right">{{ props.item.iron }}</td>
+                     <tr @click="props.expanded = !props.expanded"> 
+                      <td>{{ props.item.name }}</td>
+                      <td class="text-xs-right">{{ props.item.calories }}</td>
+                      <td class="text-xs-right">{{ props.item.fat }}</td>
+                      <td class="text-xs-right">{{ props.item.carbs }}</td>
+                      <td class="text-xs-right">{{ props.item.protein }}</td>
+                      <td class="text-xs-right">{{ props.item.sodium }}</td>
+                      <td class="text-xs-right">{{ props.item.calcium }}</td>
+                      <td class="text-xs-right">{{ props.item.iron }}</td>
+                    </tr>
+                  </template>
+                  <template slot="expand" scope="props">
+                    <v-card flat>
+                      <v-card-text>{{props.item.name}}</v-card-text>
+                    </v-card>
+                    <v-card flat>
+                      <v-card-text>{{props.item.calories}}</v-card-text>
+                    </v-card>
                   </template>
                 </v-data-table>
             </div>
