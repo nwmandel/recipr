@@ -12,3 +12,5 @@ mashapekey.json
 *.ntvs*
 *.njsproj
 *.sln
+jparse.js
+out.json

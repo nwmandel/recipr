@@ -75,6 +75,10 @@
               <p>Input is {{input}}</p>
               <p>Query Result is {{qres}}</p>
               <p>Parsed result is {{pres}}</p>
+<!--Getting the images to display-->			  
+			  <li v-for="im in imlink">
+				<img v-bind:src="im"/>
+			  </li>
               
 
               <!--Search Button-->
@@ -178,6 +182,8 @@
         title: 'Recipr',
         qres: '',
         pres: '',
+		
+		imlink: [],  //array for the image links
         input: '',
         buttonClicked: false,
         lastClicked: '',
@@ -369,7 +375,7 @@
             for (let j = 0; j < val.length; j++) {
               this.pres += val[j].name;   // returns name
               this.pres += val[j].link;   // returns link
-              this.pres += val[j].image;  // returns image link
+              this.imlink.push(val[j].image);  // adds to array of image links
             }
           }
         }
