@@ -42,9 +42,20 @@
                     <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients'">
                       <v-subheader>Search</v-subheader>
                     </v-flex>
-                    <v-flex xs4 v-if="lastClicked == 'Ethnicity'">
-                      <v-subheader>Search: Enter 1 (or more, separated by a comma) of the following: african, chinese, japanese, korean, vietnamese, thai, indian, british, irish, french, italian, mexican, spanish, middle eastern, jewish, american, cajun, southern, greek, german, nordic, eastern european, caribbean, or latin american.</v-subheader>
+
+
+                    <v-flex xs12 sm6 v-if="lastClicked == 'Ethnicity'">
+                       <v-select
+                          label="Select"
+                          v-bind:items="cuisines"
+                          v-model="chosenCuisines"
+                          multiple
+                          max-height="400"
+                          hint="Select one or more of the following"
+                          persistent-hint
+                       ></v-select>
                     </v-flex>
+
                     <v-flex xs8>
                       
                       <v-text-field v-if="lastClicked === 'Recipe'"
@@ -60,10 +71,6 @@
                        <v-text-field v-if="lastClicked == 'Ethnicity'"
                         label="Query"
                         v-model="input">
-                      </v-text-field>
-                       <v-text-field v-if="lastClicked == 'Ethnicity'"
-                        label="Ethnicity"
-                        v-model="ethnicityInput">
                       </v-text-field>
                     
                     </v-flex>
@@ -101,7 +108,7 @@
               <v-container fluid grid-list-xl v-if="lastClicked == 'Ethnicity'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
-                    <v-btn color="info" class="button-xs-center" v-on:click="getEthnicityRecipe(input, ethnicityInput)">Search
+                    <v-btn color="info" class="button-xs-center" v-on:click="getEthnicityRecipe(input)">Search
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -185,6 +192,10 @@
         buttonClicked: false,
         lastClicked: '',
         ethnicityInput: '',
+        chosenCuisines: [],
+        cuisines: [
+           'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
+        ],
 
         // For the table
         headers: [
@@ -257,8 +268,8 @@
       getIngredientsRecipe: function(query) {
         this.title = query;
       },
-      getEthnicityRecipe: function(query, ethnicity) {
-        this.title = ethnicity;
+      getEthnicityRecipe: function(query) {
+        this.title = query;
       },
       addItem: function() {
         this.items.push({
