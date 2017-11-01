@@ -74,6 +74,7 @@
               </v-card-text>
               <p>Input is {{input}}</p>
               <p>Query Result is {{qres}}</p>
+              <p>Parsed result is {{pres}}</p>
               
 
               <!--Search Button-->
@@ -176,6 +177,7 @@
         serverdata: '',
         title: 'Recipr',
         qres: '',
+        pres: '',
         input: '',
         buttonClicked: false,
         lastClicked: '',
@@ -325,9 +327,12 @@
     methods: {
       getSiteRecipe: function(query) {
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
-            .then(res => {this.qres = res.data})
-            console.log(res.data);
+            .then(res => {
+              this.parsej(res.data);
+              this.qres = res.data;
+            })
       },
+
       getIngredientsRecipe: function(query) {
         this.title = query;
       },
@@ -347,6 +352,27 @@
           iron: '9000%',
           image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
         });
+      },
+
+      parsej: function(input) {
+        var input_ = JSON.stringify(input);
+        var parsing = JSON.parse(input_);
+        var keys = Object.keys(parsing);
+        console.log(input_);
+        for (let i = 0; i < keys.length; i++) {
+          var key = keys[i];
+          var val = parsing[key];
+          if (key === "Recipes") {
+            console.log(key,val);
+
+            // loops over each recipe in json 
+            for (let j = 0; j < val.length; j++) {
+              this.pres += val[j].name;   // returns name
+              this.pres += val[j].link;   // returns link
+              this.pres += val[j].image;  // returns image link
+            }
+          }
+        }
       }
 
     }
