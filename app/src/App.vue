@@ -41,7 +41,7 @@
               <v-card-text>
                 <v-container fluid>
                   <v-layout row>
-                    <v-flex xs4>
+                    <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients'">
                       <v-subheader>Search</v-subheader>
                     </v-flex>
                     <v-flex xs4 v-if="lastClicked == 'Ethnicity'">
