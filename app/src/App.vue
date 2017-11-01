@@ -59,10 +59,19 @@
               
 
               <!--Search Button-->
-              <v-container fluid grid-list-xl>
+              <v-container fluid grid-list-xl v-if="lastClicked == 'Recipe'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
                     <v-btn color="info" class="button-xs-center" v-on:click="getSiteRecipe(input)">Search  
+                      <v-icon>search</v-icon>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+              <v-container fluid grid-list-xl v-if="lastClicked == 'Ingredients'">
+                <v-layout row justify-space-around>
+                  <v-flex xs2>
+                    <v-btn color="info" class="button-xs-center" v-on:click="getIngredientsRecipe(input)">Search   
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -263,6 +272,9 @@
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
             .then(res => {this.qres = res.data})
             console.log(res.data);
+      },
+      getIngredientsRecipe: function(query) {
+        this.title = query;
       },
       addItem: function() {
         this.items.push({
