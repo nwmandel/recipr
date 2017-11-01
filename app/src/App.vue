@@ -60,8 +60,12 @@
                       </v-text-field>
 
                        <v-text-field v-if="lastClicked == 'Ethnicity'"
-                        label="Ethnicity"
+                        label="Query"
                         v-model="input">
+                      </v-text-field>
+                       <v-text-field v-if="lastClicked == 'Ethnicity'"
+                        label="Ethnicity"
+                        v-model="ethnicityInput">
                       </v-text-field>
                     
                     </v-flex>
@@ -94,7 +98,7 @@
               <v-container fluid grid-list-xl v-if="lastClicked == 'Ethnicity'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
-                    <v-btn color="info" class="button-xs-center" v-on:click="getEthnicityRecipe(input)">Search
+                    <v-btn color="info" class="button-xs-center" v-on:click="getEthnicityRecipe(input, ethnicityInput)">Search
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -175,6 +179,7 @@
         input: '',
         buttonClicked: false,
         lastClicked: '',
+        ethnicityInput: '',
 
         // For the table
         headers: [
@@ -326,8 +331,8 @@
       getIngredientsRecipe: function(query) {
         this.title = query;
       },
-      getEthnicityRecipe: function(query) {
-        this.title = query;
+      getEthnicityRecipe: function(query, ethnicity) {
+        this.title = ethnicity;
       },
       addItem: function() {
         this.items.push({
