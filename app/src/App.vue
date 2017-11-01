@@ -7,8 +7,6 @@
     </v-toolbar>
     
     <main>
-    <h2>{{ serverdata }}</h2>
-      
       <v-content>
         <v-container fluid>
             <!--Recipe and Ingredient Buttons-->
@@ -182,8 +180,7 @@
         title: 'Recipr',
         qres: '',
         pres: '',
-		
-		imlink: [],  //array for the image links
+		    imlink: [],  //array for the image links
         input: '',
         buttonClicked: false,
         lastClicked: '',
@@ -331,7 +328,9 @@
     },
 
     methods: {
-      getSiteRecipe: function(query) {
+      getSiteRecipe: function(query) {  
+          this.qres = '';   // clear previous input
+          this.pres = '';   // clear previous input
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
             .then(res => {
               this.parsej(res.data);
@@ -361,15 +360,15 @@
       },
 
       parsej: function(input) {
-        var input_ = JSON.stringify(input);
-        var parsing = JSON.parse(input_);
-        var keys = Object.keys(parsing);
-        console.log(input_);
+        var input_ = JSON.stringify(input); // turn return api call to string
+        var parsing = JSON.parse(input_);   // parse the string
+        var keys = Object.keys(parsing);    // get keys from json
+
+        // loop over keys
         for (let i = 0; i < keys.length; i++) {
-          var key = keys[i];
-          var val = parsing[key];
-          if (key === "Recipes") {
-            console.log(key,val);
+          var key = keys[i];    // current key
+          var val = parsing[key]; // value of current key
+          if (key === "Recipes") {    // if we reach recipes, then parse needed data below
 
             // loops over each recipe in json 
             for (let j = 0; j < val.length; j++) {
