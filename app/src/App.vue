@@ -148,6 +148,11 @@
                         <img :src="props.item.image">
                       </v-card-text>
                     </v-card>
+                                        <v-card flat>
+                      <v-card-text>
+                        <a :href="props.item.link">{{props.item.link}}</a>
+                      </v-card-text>
+                    </v-card>
 
                   </template>
                 </v-data-table>
@@ -224,7 +229,8 @@
             sodium: 87,
             calcium: '14%',
             iron: '1%',
-            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
+            link: 'wat.com'
           },
           {
             value: false,
@@ -236,7 +242,8 @@
             sodium: 129,
             calcium: '8%',
             iron: '1%',
-            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
+            link: 'wat.com'
           },
           {
             value: false,
@@ -248,7 +255,8 @@
             sodium: 337,
             calcium: '6%',
             iron: '7%',
-            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
+            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
+            link: 'wat.com'
           } 
         ]
       }
@@ -306,14 +314,15 @@
               this.items.push({
                 value: false,
                 name: val[j].name,
-                calories: 9000,
-                fat: '9000',
-                carbs: 9000,
-                protein: 9000,
+                calories: JSON.stringify(val[j].dataPoints[1].value),
+                fat: JSON.stringify(val[j].dataPoints[3].value),
+                carbs: JSON.stringify(val[j].dataPoints[4].value),
+                protein: JSON.stringify(val[j].dataPoints[2].value),
                 sodium: 9000,
                 calcium: '9000%',
                 iron: '9000%',
-                image: val[j].image
+                image: val[j].image,
+                link: val[j].link
               });
             }
           }
