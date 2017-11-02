@@ -83,6 +83,64 @@
                         label="Query"
                         v-model="input">
                       </v-text-field>
+
+                      <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
+                         <v-card-text> 
+                            <v-container fluid grid-list-md>
+                              <v-layout row wrap>
+                                <v-flex xs9>
+                                  <v-slider label="R" v-bind:max="255" v-model="red"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="red" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="G" v-bind:max="255" v-model="green"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="green" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="B" v-bind:max="255" v-model="blue"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="blue" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="B" v-bind:max="255" v-model="four"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="four" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="B" v-bind:max="255" v-model="five"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="five" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="B" v-bind:max="255" v-model="six"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="six" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="B" v-bind:max="255" v-model="seven"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="seven" type="number"></v-text-field>
+                                </v-flex>
+                                <v-flex xs9>
+                                  <v-slider label="B" v-bind:max="255" v-model="eight"></v-slider>
+                                </v-flex>
+                                <v-flex xs3>
+                                  <v-text-field v-model="eight" type="number"></v-text-field>
+                                </v-flex>
+                              </v-layout>
+                            </v-container>
+                          </v-card-text>
+                        </v-container fluid>
+
                     
                     </v-flex>
                   </v-layout>
@@ -226,6 +284,14 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
+        red: '',
+        green: '',
+        blue: '',
+        four: '',
+        five: '',
+        six: '',
+        seven: '',
+        eight: '',
 
         // For the table
         headers: [
