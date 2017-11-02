@@ -30,6 +30,12 @@
                       <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ethnicity'">Ethnicity</v-btn>
                     </div>
                   </v-card-text>
+
+                  <v-card-text>
+                    <div>
+                      <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Nutrients'">Nutrients</v-btn>
+                    </div>
+                  </v-card-text>
                 </v-card>
               </v-layout>
             </v-container>
@@ -39,7 +45,7 @@
               <v-card-text>
                 <v-container fluid>
                   <v-layout row>
-                    <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients'">
+                    <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients' || lastClicked == 'Nutrients'">
                       <v-subheader>Search</v-subheader>
                     </v-flex>
 
@@ -69,6 +75,11 @@
                       </v-text-field>
 
                        <v-text-field v-if="lastClicked == 'Ethnicity'"
+                        label="Query"
+                        v-model="input">
+                      </v-text-field>
+
+                       <v-text-field v-if="lastClicked == 'Nutrients'"
                         label="Query"
                         v-model="input">
                       </v-text-field>
@@ -113,6 +124,15 @@
                 <v-layout row justify-space-around>
                   <v-flex xs2>
                     <v-btn color="info" class="button-xs-center" v-on:click="getEthnicityRecipe(input)">Search
+                      <v-icon>search</v-icon>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+              <v-container fluid grid-list-xl v-if="lastClicked == 'Nutrients'">
+                <v-layout row justify-space-around>
+                  <v-flex xs2>
+                    <v-btn color="info" class="button-xs-center" v-on:click="getNutrientsRecipe(input)">Search
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -283,6 +303,9 @@
         this.title = query;
       },
       getEthnicityRecipe: function(query) {
+        this.title = query;
+      },
+      getNutrientsRecipe: function(query) {
         this.title = query;
       },
       addItem: function() {
