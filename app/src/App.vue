@@ -81,8 +81,10 @@
               <p>Query Result is {{qres}}</p>
               <p>Parsed result is {{pres}}</p>
 <!--Getting the images to display-->			  
-			  <li v-for="im in imlink">
-				<img v-bind:src="im"/>
+			  <li v-for="n in imlink.length">
+				<a v-bind:href="rlink[n]"><img v-bind:src="imlink[n]"/></a>
+				<!--<img v-bind:src="imlink[n]"/>
+				<p>{{rlink[n]}}</p>-->
 			  </li>
               
 
@@ -192,7 +194,8 @@
         title: 'Recipr',
         qres: '',
         pres: '',
-		    imlink: [],  //array for the image links
+		rlink: [],     //array for recepie links
+		imlink: [],  //array for the image links
         input: '',
         buttonClicked: false,
         lastClicked: '',
@@ -309,7 +312,7 @@
             // loops over each recipe in json 
             for (let j = 0; j < val.length; j++) {
               this.pres += val[j].name;   // returns name
-              this.pres += val[j].link;   // returns link
+              this.rlink.push(val[j].link);
               this.imlink.push(val[j].image);  // adds to array of image links
               this.items.push({
                 value: false,
