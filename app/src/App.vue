@@ -77,9 +77,11 @@
                   </v-layout>
                 </v-container>
               </v-card-text>
+              <!--
               <p>Input is {{input}}</p>
               <p>Query Result is {{qres}}</p>
               <p>Parsed result is {{pres}}</p>
+              -->
 <!--Getting the images to display-->			  
 			  <li v-for="n in imlink.length">
 				<a v-bind:href="rlink[n]"><img v-bind:src="imlink[n]"/></a>
@@ -273,6 +275,7 @@
             .then(res => {
               this.parsej(res.data);
               this.qres = res.data;
+              console.log(res.status, res.header); // print status of return call and acess information
             })
       },
 

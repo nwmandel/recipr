@@ -24,11 +24,16 @@ var parsej = (input) => {
 				console.log(val[j].name);	// returns name
 				console.log(val[j].link);	// returns link
 				console.log(val[j].image);	// returns image link
+				console.log("\n\n");
+				console.log(val[j].dataPoints[1].value+"\n");
+				console.log(val[j].dataPoints[2].value+"\n");
+				console.log(val[j].dataPoints[3].value+"\n");
+				console.log(val[j].dataPoints[4].value+"\n");
 			}
 		}
 	}
 }
 
-parsej2(out);
+parsej(out);
 
 
