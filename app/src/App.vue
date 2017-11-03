@@ -164,15 +164,8 @@
               <p>Query Result is {{qres}}</p>
               <p>Parsed result is {{pres}}</p>
               -->
-<!--Getting the images to display-->			  
-			  <li v-for="n in imlink.length">
-				<a v-bind:href="rlink[n]"><img v-bind:src="imlink[n]"/></a>
-				<!--<img v-bind:src="imlink[n]"/>
-				<p>{{rlink[n]}}</p>-->
-			  </li>
-              
 
-              <!--Search Button-->
+            <!--Search Button-->
               <v-container fluid grid-list-xl v-if="lastClicked == 'Recipe'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
@@ -210,6 +203,16 @@
                 </v-layout>
               </v-container>
             </v-container>  
+
+<!--Getting the images to display-->			  
+			  <li v-for="n in imlink.length">
+				<a v-bind:href="rlink[n]"><img v-bind:src="imlink[n]"/></a>
+				<!--<img v-bind:src="imlink[n]"/>
+				<p>{{rlink[n]}}</p>-->
+			  </li>
+              
+
+              
         
             <div id="foodTable">
                 <v-data-table
@@ -287,8 +290,8 @@
         title: 'Recipr',
         qres: '',
         pres: '',
-		rlink: [],     //array for recepie links
-		imlink: [],  //array for the image links
+		    rlink: [],     //array for recepie links
+		    imlink: [],  //array for the image links
         input: '',
         buttonClicked: false,
         lastClicked: '',
@@ -335,33 +338,7 @@
             iron: '1%',
             image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
             link: 'wat.com'
-          },
-          {
-            value: false,
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            sodium: 129,
-            calcium: '8%',
-            iron: '1%',
-            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
-            link: 'wat.com'
-          },
-          {
-            value: false,
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            sodium: 337,
-            calcium: '6%',
-            iron: '7%',
-            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
-            link: 'wat.com'
-          } 
+          }
         ]
       }
     },
@@ -403,6 +380,13 @@
       },
 
       parsej: function(input) {
+        
+        for (let i = 0; i < 3; i++) {
+          if (this.items !== null) 
+          this.items.pop();   // pop the last 3 items returned
+          this.imlink.pop();   // clear image link
+          this.rlink.pop();    // clear recipe link
+        }
         var input_ = JSON.stringify(input); // turn return api call to string
         var parsing = JSON.parse(input_);   // parse the string
         var keys = Object.keys(parsing);    // get keys from json
@@ -436,6 +420,7 @@
           }
         }
       }
+
 
     }
   }
