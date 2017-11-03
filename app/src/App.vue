@@ -15,25 +15,29 @@
               <v-layout row justify-center>
                   <v-card-text>
                     <div>
-                      <v-btn color="primary" dark v-on:click="buttonClicked = true; lastClicked = 'Recipe'">Recipe</v-btn>
+                      <v-btn v-if="lastClicked == 'Recipe'" color="error" dark v-on:click="buttonClicked = true; lastClicked = 'Recipe'">Recipe</v-btn>
+                      <v-btn v-if="lastClicked !== 'Recipe'" color="primary" dark v-on:click="buttonClicked = true; lastClicked = 'Recipe'">Recipe</v-btn>
+                   </div>
+                  </v-card-text>
+
+                  <v-card-text>
+                    <div>
+                      <v-btn v-if="lastClicked == 'Ingredients'" color="error" dark v-on:click= "buttonClicked = true; lastClicked = 'Ingredients'">Ingredients</v-btn>
+                      <v-btn v-if="lastClicked !== 'Ingredients'" color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ingredients'">Ingredients</v-btn>
                     </div>
                   </v-card-text>
 
                   <v-card-text>
                     <div>
-                      <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ingredients'">Ingredients</v-btn>
+                      <v-btn v-if="lastClicked == 'Ethnicity'" color="error" dark v-on:click= "buttonClicked = true; lastClicked = 'Ethnicity'">Ethnicity</v-btn>
+                      <v-btn v-if="lastClicked !== 'Ethnicity'" color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ethnicity'">Ethnicity</v-btn>
                     </div>
                   </v-card-text>
 
                   <v-card-text>
                     <div>
-                      <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Ethnicity'">Ethnicity</v-btn>
-                    </div>
-                  </v-card-text>
-
-                  <v-card-text>
-                    <div>
-                      <v-btn color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Nutrients'">Nutrients</v-btn>
+                      <v-btn v-if="lastClicked == 'Nutrients'" color="error" dark v-on:click= "buttonClicked = true; lastClicked = 'Nutrients'">Nutrients</v-btn>
+                      <v-btn v-if="lastClicked !== 'Nutrients'" color="primary" dark v-on:click= "buttonClicked = true; lastClicked = 'Nutrients'">Nutrients</v-btn>
                     </div>
                   </v-card-text>
                 </v-card>
@@ -84,66 +88,75 @@
                         v-model="input">
                       </v-text-field>
 
+
+                    
+                    </v-flex>
+                  </v-layout>
+
+
+
+
+
+
+
                       <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
                          <v-card-text> 
                             <v-container fluid grid-list-md>
                               <v-layout row wrap>
                                 <v-flex xs9>
-                                  <v-slider label="R" v-bind:max="255" v-model="red"></v-slider>
+                                  <v-slider label="Max Calories:" v-bind:max="5000" v-model="maxCalories"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="red" type="number"></v-text-field>
+                                  <v-text-field v-model="maxCalories" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="G" v-bind:max="255" v-model="green"></v-slider>
+                                  <v-slider label="Max Carbs(g):" v-bind:max="5000" v-model="maxCarbs"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="green" type="number"></v-text-field>
+                                  <v-text-field v-model="maxCarbs" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="B" v-bind:max="255" v-model="blue"></v-slider>
+                                  <v-slider label="Max Fat(g):" v-bind:max="500" v-model="maxFat"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="blue" type="number"></v-text-field>
+                                  <v-text-field v-model="maxFat" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="B" v-bind:max="255" v-model="four"></v-slider>
+                                  <v-slider label="Max Protein(g):" v-bind:max="500" v-model="maxProtein"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="four" type="number"></v-text-field>
+                                  <v-text-field v-model="maxProtein" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="B" v-bind:max="255" v-model="five"></v-slider>
+                                  <v-slider label="Min Calories:" v-bind:max="3000" v-model="minCalories"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="five" type="number"></v-text-field>
+                                  <v-text-field v-model="minCalories" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="B" v-bind:max="255" v-model="six"></v-slider>
+                                  <v-slider label="Min Carbs(g):" v-bind:max="3000" v-model="minCarbs"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="six" type="number"></v-text-field>
+                                  <v-text-field v-model="minCarbs" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="B" v-bind:max="255" v-model="seven"></v-slider>
+                                  <v-slider label="Min Fat(g):" v-bind:max="300" v-model="minFat"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="seven" type="number"></v-text-field>
+                                  <v-text-field v-model="minFat" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="B" v-bind:max="255" v-model="eight"></v-slider>
+                                  <v-slider label="Min Protein(g):" v-bind:max="300" v-model="minProtein"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
-                                  <v-text-field v-model="eight" type="number"></v-text-field>
+                                  <v-text-field v-model="minProtein" type="number"></v-text-field>
                                 </v-flex>
                               </v-layout>
                             </v-container>
                           </v-card-text>
                         </v-container fluid>
 
-                    
-                    </v-flex>
-                  </v-layout>
+                
                 </v-container>
               </v-card-text>
               <!--
@@ -284,14 +297,14 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
-        red: '',
-        green: '',
-        blue: '',
-        four: '',
-        five: '',
-        six: '',
-        seven: '',
-        eight: '',
+        maxCalories: '10000',
+        maxCarbs: '10000',
+        maxFat: '1000',
+        maxProtein: '1000',
+        minCalories: '0',
+        minCarbs: '0',
+        minFat: '0',
+        minProtein: '0',
 
         // For the table
         headers: [
