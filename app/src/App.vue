@@ -94,11 +94,6 @@
                   </v-layout>
 
 
-
-
-
-
-
                       <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
                          <v-card-text> 
                             <v-container fluid grid-list-md>
@@ -286,7 +281,7 @@
   export default {
     data () {
       return {
-        serverdata: '',
+        foodid: '',
         title: 'Recipr',
         qres: '',
         pres: '',
@@ -351,7 +346,19 @@
             .then(res => {
               this.parsej(res.data);
               this.qres = res.data;
-              console.log(res.status, res.header); // print status of return call and acess information
+              console.log(res.status, res.header);
+            })
+            // catch errors and print messages to log
+            .catch((err) => {
+              if (err.res) {
+                console.log(err.res.data);
+                console.log(err.res.status);
+                console.log(err.res.headers);
+              } else if (err.req) {
+                console.log(err.req);
+              } else {
+                console.log('Error', err.message);
+              }
             })
       },
 
@@ -359,7 +366,26 @@
         this.title = query;
       },
       getEthnicityRecipe: function(query) {
-        this.title = query;
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
+          .then(res => {
+            this.parsej(res.data);
+            this.qres  = res.data;
+            console.log(res.status, res.header);   
+          })
+
+          // catch errors and print messages to log
+            .catch((err) => {
+              if (err.res) {
+                console.log(err.res.data);
+                console.log(err.res.status);
+                console.log(err.res.headers);
+              } else if (err.req) {
+                console.log(err.req);
+              } else {
+                console.log('Error', err.message);
+              }
+            })
+        //console.log(this.chosenCuisines);
       },
       getNutrientsRecipe: function(query) {
         this.title = query;
@@ -383,9 +409,9 @@
         
         for (let i = 0; i < 3; i++) {
           if (this.items !== null) 
-          this.items.pop();   // pop the last 3 items returned
-          this.imlink.pop();   // clear image link
-          this.rlink.pop();    // clear recipe link
+            this.items.pop();   // pop the last 3 items returned
+            this.imlink.pop();   // clear image link
+            this.rlink.pop();    // clear recipe link
         }
         var input_ = JSON.stringify(input); // turn return api call to string
         var parsing = JSON.parse(input_);   // parse the string
@@ -397,7 +423,6 @@
           var val = parsing[key]; // value of current key
           if (key === "Recipes") {    // if we reach recipes, then parse needed data below
 
-            
             // loops over each recipe in json 
             for (let j = 0; j < val.length; j++) {
               this.pres += val[j].name;   // returns name
@@ -415,6 +440,29 @@
                 iron: '9000%',
                 image: val[j].image,
                 link: val[j].link
+              });
+            }
+          }
+          // outer key for result of search recipes api call for getEthnicityRecipe
+          else if (key === "results") {
+            for (let j = 0; j < val.length; j++) {
+              this.foodid = val[j].id;
+              console.log(this.foodid);
+              //TODO put the link in imlink
+              //result of getEtnicityRecipes is in ethres.txt
+              //this.imlink.push(val[j].imageURLs);
+              this.items.push({
+                value: false,
+                name: val[j].title,
+                calories: 10,
+                fat: 10,
+                carbs: 10,
+                protein: 10,
+                sodium: 9000,
+                calcium: '9000%',
+                iron: '9000%',
+                image: val[j].imageURLs,
+                link: 'wat.com'
               });
             }
           }
