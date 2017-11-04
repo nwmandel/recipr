@@ -93,7 +93,6 @@
                     </v-flex>
                   </v-layout>
 
-
                       <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
                          <v-card-text> 
                             <v-container fluid grid-list-md>
@@ -321,19 +320,6 @@
           { text: 'Iron (%)', value: 'iron' }
         ],
         items: [
-          {
-            value: false,
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            sodium: 87,
-            calcium: '14%',
-            iron: '1%',
-            image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png',
-            link: 'wat.com'
-          }
         ]
       }
     },
