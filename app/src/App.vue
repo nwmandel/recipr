@@ -214,14 +214,6 @@
               </v-container>
             </v-container>  
 
-<!--Getting the images to display-->			  
-			  <li v-for="n in imlink.length">
-				<a v-bind:href="rlink[n]"><img v-bind:src="imlink[n]"/></a>
-				<!--<img v-bind:src="imlink[n]"/>
-				<p>{{rlink[n]}}</p>-->
-			  </li>
-              
-
               
         
             <div id="foodTable">
@@ -253,13 +245,10 @@
                     </v-card>
                     <v-card flat>
                       <v-card-text>
-                        <img :src="props.item.image">
+						<a v-bind:href="props.item.link" target="_blank"><img v-bind:src="props.item.image"/></a>
                       </v-card-text>
                     </v-card>
                                         <v-card flat>
-                      <v-card-text>
-                        <a :href="props.item.link">{{props.item.link}}</a>
-                      </v-card-text>
                     </v-card>
 
                   </template>
