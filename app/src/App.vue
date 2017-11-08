@@ -159,6 +159,22 @@
               <p>Parsed result is {{pres}}</p>
               -->
 
+            <!--Dietary Needs Selection-->
+              <v-container fluid>
+                 <v-flex xs6>
+                   <v-subheader>Dietary Restrictions</v-subheader>
+                 </v-flex>
+                 <v-flex xs6>
+                   <v-select
+                      v-bind:items="diets"
+                      v-model="chosenDiet"
+                      label="Select"
+                      single-line
+                      bottom
+                   ></v-select>
+                </v-flex>
+              </v-container fluid>
+
             <!--Search Button-->
               <v-container fluid grid-list-xl v-if="lastClicked == 'Recipe'">
                 <v-layout row justify-space-around>
@@ -289,7 +305,6 @@
         input: '',
         buttonClicked: false,
         lastClicked: '',
-        ethnicityInput: '',
         chosenCuisines: [],
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
@@ -302,7 +317,8 @@
         minCarbs: '0',
         minFat: '0',
         minProtein: '0',
-
+        diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
+        chosenDiet: 'none',
         // For the table
         headers: [
           {
@@ -366,6 +382,7 @@
                 console.log('Error', err.message);
               }
             })
+        this.title = this.chosenDiet;
       },
       getEthnicityRecipe: function(query) {
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
@@ -390,7 +407,7 @@
         //console.log(this.chosenCuisines);
       },
       getNutrientsRecipe: function(query) {
-        this.title = query;
+        this.title = this.chosenDiet;
       },
       addItem: function() {
         this.items.push({
@@ -427,10 +444,8 @@
                 console.log('Error', err.message);
               }
           });
-      }
-
-      parsej: function(input) {
-        
+      },
+      parsej: function(input) {  
         for (let i = 0; i < 3; i++) {
           if (this.items !== null) 
             this.items.pop();   // pop the last 3 items returned
