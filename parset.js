@@ -1,7 +1,7 @@
 //var input = require('./out1.json');
 var axios = require('axios');
 const mkey = require('./mashapekey.json');
-var out = require('./out3.json');
+var out = require('./ingredres.json');
   
 var config = {
     headers: {
@@ -17,6 +17,11 @@ var parsej = (input) => {
 	for (let i = 0; i < keys.length; i++) {
 		var key = keys[i];
 		var val = parsing[key];
+		if (val.id !== null) {
+			console.log(val.id);
+			console.log(val.title);
+			console.log(val.image);
+		}
 		if (key === "Recipes") {
 
 			// loops over each recipe in json 

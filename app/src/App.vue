@@ -284,8 +284,8 @@
         title: 'Recipr',
         qres: '',
         pres: '',
-		    rlink: [],     //array for recepie links
-		    imlink: [],  //array for the image links
+        rlink: [],     //array for recepie links
+        imlink: [],  //array for the image links
         input: '',
         buttonClicked: false,
         lastClicked: '',
@@ -349,7 +349,23 @@
       },
 
       getIngredientsRecipe: function(query) {
-        this.title = query;
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
+          .then(res => {
+            this.parsej(res.data);
+            this.qres = res.data;
+            console.log(res.status, res.header);
+          })
+          .catch((err) => {
+              if (err.res) {
+                console.log(err.res.data);
+                console.log(err.res.status);
+                console.log(err.res.headers);
+              } else if (err.req) {
+                console.log(err.req);
+              } else {
+                console.log('Error', err.message);
+              }
+            })
       },
       getEthnicityRecipe: function(query) {
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
@@ -391,6 +407,28 @@
         });
       },
 
+      getRecipeFromId: function(id) {
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information?includeNutrition=false")
+          .then(res => {
+            this.parsej(res.data);
+            this.qres = res.data;
+            console.log(res.status, res.header);   
+          })
+
+          // catch errors and print messages to log
+            .catch((err) => {
+              if (err.res) {
+                console.log(err.res.data);
+                console.log(err.res.status);
+                console.log(err.res.headers);
+              } else if (err.req) {
+                console.log(err.req);
+              } else {
+                console.log('Error', err.message);
+              }
+          });
+      }
+
       parsej: function(input) {
         
         for (let i = 0; i < 3; i++) {
@@ -399,6 +437,7 @@
             this.imlink.pop();   // clear image link
             this.rlink.pop();    // clear recipe link
         }
+
         var input_ = JSON.stringify(input); // turn return api call to string
         var parsing = JSON.parse(input_);   // parse the string
         var keys = Object.keys(parsing);    // get keys from json
@@ -407,6 +446,25 @@
         for (let i = 0; i < keys.length; i++) {
           var key = keys[i];    // current key
           var val = parsing[key]; // value of current key
+          // if val.id exists then its probably the ingredients call
+          if (val.id !== null) {
+            this.pres += val.title;
+            this.imlink.push(val.image);
+            this.items.push({
+              value: false,
+              name: val.title,
+              calories: 50,
+              fat: 1,
+              carbs: 10,
+              protein: 9,
+              sodium: 9000,
+              calcium: '9000%',
+              iron: '9000%',
+              image: val.image,
+              link: "wat.com"
+            });
+          }
+
           if (key === "Recipes") {    // if we reach recipes, then parse needed data below
 
             // loops over each recipe in json 
