@@ -296,6 +296,7 @@
   export default {
     data () {
       return {
+        api_call: 0,
         foodid: '',
         title: 'Recipr',
         qres: '',
@@ -342,6 +343,7 @@
 
     methods: {
       getSiteRecipe: function(query) {  
+          this.api_call = 1;    // defined to be 1 for api called
           this.qres = '';   // clear previous input
           this.pres = '';   // clear previous input
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
@@ -365,6 +367,7 @@
       },
 
       getIngredientsRecipe: function(query) {
+        this.api_call = 2;    // defined to be 2 for api called
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
             this.parsej(res.data);
@@ -385,6 +388,7 @@
         this.title = this.chosenDiet;
       },
       getEthnicityRecipe: function(query) {
+        this.api_call = 3;    // defined to be 3 for api called
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
           .then(res => {
             this.parsej(res.data);
@@ -408,23 +412,12 @@
       },
       getNutrientsRecipe: function(query) {
         this.title = this.chosenDiet;
-      },
-      addItem: function() {
-        this.items.push({
-          value: false,
-          name: 'AddingExample',
-          calories: '9000',
-          fat: '9000',
-          carbs: 9000,
-          protein: 9000,
-          sodium: 9000,
-          calcium: '9000%',
-          iron: '9000%',
-          image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
-        });
+        this.api_call = 4;    // defined to be 4 for api called
+        this.title = query;
       },
 
       getRecipeFromId: function(id) {
+        this.api_call = 5;    // defined to be 5 for api called
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information?includeNutrition=false")
           .then(res => {
             this.parsej(res.data);
@@ -445,7 +438,25 @@
               }
           });
       },
-      parsej: function(input) {  
+
+      addItem: function() {
+        this.items.push({
+          value: false,
+          name: 'AddingExample',
+          calories: '9000',
+          fat: '9000',
+          carbs: 9000,
+          protein: 9000,
+          sodium: 9000,
+          calcium: '9000%',
+          iron: '9000%',
+          image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
+        });
+      },
+
+      
+      parsej: function(input) {
+        
         for (let i = 0; i < 3; i++) {
           if (this.items !== null) 
             this.items.pop();   // pop the last 3 items returned
@@ -462,68 +473,90 @@
           var key = keys[i];    // current key
           var val = parsing[key]; // value of current key
           // if val.id exists then its probably the ingredients call
-          if (val.id !== null) {
-            this.pres += val.title;
-            this.imlink.push(val.image);
-            this.items.push({
-              value: false,
-              name: val.title,
-              calories: 50,
-              fat: 1,
-              carbs: 10,
-              protein: 9,
-              sodium: 9000,
-              calcium: '9000%',
-              iron: '9000%',
-              image: val.image,
-              link: "wat.com"
-            });
-          }
+          switch(this.api_call) {
+            // 1 is for getSiteRecipe
+            case 1:
+                if (key === "Recipes") {    // if we reach recipes, then parse needed data below
+                  // loops over each recipe in json 
+                  for (let j = 0; j < val.length; j++) {
+                    this.pres += val[j].name;   // returns name
+                    this.rlink.push(val[j].link);
+                    this.imlink.push(val[j].image);  // adds to array of image links
+                    this.items.push({
+                      value: false,
+                      name: val[j].name,
+                      calories: parseFloat(val[j].dataPoints[1].value),
+                      fat: parseFloat(val[j].dataPoints[3].value),
+                      carbs: parseFloat(val[j].dataPoints[4].value),
+                      protein: parseFloat(val[j].dataPoints[2].value),
+                      sodium: 9000,
+                      calcium: '9000%',
+                      iron: '9000%',
+                      image: val[j].image,
+                      link: val[j].link
+                    });
+                   }
+                }
+                break;
 
-          if (key === "Recipes") {    // if we reach recipes, then parse needed data below
 
-            // loops over each recipe in json 
-            for (let j = 0; j < val.length; j++) {
-              this.pres += val[j].name;   // returns name
-              this.rlink.push(val[j].link);
-              this.imlink.push(val[j].image);  // adds to array of image links
-              this.items.push({
-                value: false,
-                name: val[j].name,
-                calories: parseFloat(val[j].dataPoints[1].value),
-                fat: parseFloat(val[j].dataPoints[3].value),
-                carbs: parseFloat(val[j].dataPoints[4].value),
-                protein: parseFloat(val[j].dataPoints[2].value),
-                sodium: 9000,
-                calcium: '9000%',
-                iron: '9000%',
-                image: val[j].image,
-                link: val[j].link
-              });
-            }
-          }
-          // outer key for result of search recipes api call for getEthnicityRecipe
-          else if (key === "results") {
-            for (let j = 0; j < val.length; j++) {
-              this.foodid = val[j].id;
-              console.log(this.foodid);
-              //TODO put the link in imlink
-              //result of getEtnicityRecipes is in ethres.txt
-              //this.imlink.push(val[j].imageURLs);
-              this.items.push({
-                value: false,
-                name: val[j].title,
-                calories: 10,
-                fat: 10,
-                carbs: 10,
-                protein: 10,
-                sodium: 9000,
-                calcium: '9000%',
-                iron: '9000%',
-                image: val[j].imageURLs,
-                link: 'wat.com'
-              });
-            }
+            // 2 is for getIngredients
+            case 2: 
+                this.pres += val.title;
+                this.imlink.push(val.image);
+                this.items.push({
+                  value: false,
+                  name: val.title,
+                  calories: 50,
+                  fat: 1,
+                  carbs: 10,
+                  protein: 9,
+                  sodium: 9000,
+                  calcium: '9000%',
+                  iron: '9000%',
+                  image: val.image,
+                  link: "wat.com"
+                });
+                break;
+
+
+            // 3 is for getEthnicityRecipe
+            case 3: 
+              // outer key for result of search recipes api call for getEthnicityRecipe
+              if (key === "results") {
+                for (let j = 0; j < val.length; j++) {
+                  this.foodid = val[j].id;
+                  console.log(this.foodid);
+                  //TODO put the link in imlink
+                  //result of getEtnicityRecipes is in ethres.txt
+                  //this.imlink.push(val[j].imageURLs);
+                  this.items.push({
+                    value: false,
+                    name: val[j].title,
+                    calories: 10,
+                    fat: 10,
+                    carbs: 10,
+                    protein: 10,
+                    sodium: 9000,
+                    calcium: '9000%',
+                    iron: '9000%',
+                    image: val[j].imageURLs,
+                    link: 'wat.com'
+                  });
+                }
+              }
+              break;
+
+
+            // 4 is for getNutrientsRecipe
+            case 4:
+
+            // 5 is for getRecipeFromId
+            case 5:
+
+            default:
+              console.log("error in parsing");
+              break;
           }
         }
       }
