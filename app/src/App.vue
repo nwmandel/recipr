@@ -248,13 +248,13 @@
                       <v-card-text>
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
                         -->
-						<v-btn v-on:click="getRecipeFromId(foodid)" target="_blank"></v-btn>
-            <a v-bin:href="items.link">{{ rlink }}</a>
-            <!--
+                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>
+                        <!-- TODO make the link appear after a button is pressed
+
+                        <a v-bin:href="items.link">{{ rlink }}</a>
 						            <a v-bind:href="props.item.link" target="_blank">
                         -->
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
-                        <a v-bind:href="rlink"/></a>
                       </v-card-text>
                     </v-card>
                                         <v-card flat>
@@ -455,9 +455,7 @@
                 console.log('Error', err.message);
               }
           });
-            console.log(this.foodid);
-            console.log(this.link);
-            console.log(this.rlink);
+            
       },
 
       addItem: function() {
@@ -574,16 +572,16 @@
 
             // 5 is for getRecipeFromId
             case 5:
+              console.log("got to this part of [1]\n");
               if (key === "sourceUrl") {
+              console.log("got to this part of [2]\n");
+
                     // adds the link to original recipe
-                    this.items.push({
-                      link: val
-                    });
                     this.rlink = val;
                 }
-                // puts current id into foodid
-                this.rlink.push(val[j].sourceUrl);
-            
+            console.log("foodid is: "+this.foodid);
+            console.log("link is: "+this.link);
+            console.log("rlink is: "+this.rlink);
 
             default:
               console.log("error in parsing");
