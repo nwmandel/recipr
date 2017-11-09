@@ -245,7 +245,10 @@
                     </v-card>
                     <v-card flat>
                       <v-card-text>
-						<a v-bind:href="props.item.link" target="_blank"><img v-bind:src="props.item.image"/></a>
+
+                        <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
+                        -->
+						<a v-on:click="getRecipeFromId(foodid)"v-bind:href="props.item.link" target="_blank" ><img v-bind:src="props.item.image"/></a>
                       </v-card-text>
                     </v-card>
                                         <v-card flat>
@@ -286,7 +289,7 @@
     data () {
       return {
         api_call: 0,
-        foodid: '',
+        foodid: 556470,
         title: 'Recipr',
         qres: '',
         pres: '',
@@ -356,6 +359,7 @@
       },
 
       getIngredientsRecipe: function(query) {
+        // TODO need to parse search bar input and have %2C in between each word
         this.api_call = 2;    // defined to be 2 for api called
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
@@ -491,31 +495,31 @@
 
             // 2 is for getIngredients
             case 2: 
-                this.pres += val.title;
-                this.imlink.push(val.image);
-                this.items.push({
-                  value: false,
-                  name: val.title,
-                  calories: 50,
-                  fat: 1,
-                  carbs: 10,
-                  protein: 9,
-                  sodium: 9000,
-                  calcium: '9000%',
-                  iron: '9000%',
-                  image: val.image,
-                  link: "wat.com"
-                });
+                {
+                  this.pres += val.title;
+                  this.imlink.push(val.image);
+                  this.items.push({
+                    value: false,
+                    name: val.title,
+                    calories: 50,
+                    fat: 1,
+                    carbs: 10,
+                    protein: 9,
+                    sodium: 9000,
+                    calcium: '9000%',
+                    iron: '9000%',
+                    image: val.image,
+                    link: "wat.com"
+                  });
+                }
                 break;
 
 
             // 3 is for getEthnicityRecipe
             case 3: 
-              // outer key for result of search recipes api call for getEthnicityRecipe
               if (key === "results") {
                 for (let j = 0; j < val.length; j++) {
                   this.foodid = val[j].id;
-                  console.log(this.foodid);
                   //TODO put the link in imlink
                   //result of getEtnicityRecipes is in ethres.txt
                   //this.imlink.push(val[j].imageURLs);
@@ -542,6 +546,17 @@
 
             // 5 is for getRecipeFromId
             case 5:
+                if (key === "extendedIngredients") {
+                  for (let j = 0; j < val.length; j++) {
+                    this.foodid = val[j].id;
+                    //TODO put the link in imlink
+                    //result of getEtnicityRecipes is in ethres.txt
+                    //this.imlink.push(val[j].imageURLs);
+                    this.items.push({
+                      link: val[j].sourceUrl
+                    });
+                  }
+                }
 
             default:
               console.log("error in parsing");
