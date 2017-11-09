@@ -87,12 +87,6 @@
                         v-model="input">
                       </v-text-field>
 
-                       <v-text-field v-if="lastClicked == 'Nutrients'"
-                        label="Query"
-                        v-model="input">
-                      </v-text-field>
-
-
                     
                     </v-flex>
                   </v-layout>
@@ -102,49 +96,49 @@
                             <v-container fluid grid-list-md>
                               <v-layout row wrap>
                                 <v-flex xs9>
-                                  <v-slider label="Max Calories:" v-bind:max="5000" v-model="maxCalories"></v-slider>
+                                  <v-slider label="Max Calories:" v-bind:max="2000" v-model="maxCalories"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="maxCalories" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Max Carbs(g):" v-bind:max="5000" v-model="maxCarbs"></v-slider>
+                                  <v-slider label="Max Carbs(g):" v-bind:max="500" v-model="maxCarbs"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="maxCarbs" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Max Fat(g):" v-bind:max="500" v-model="maxFat"></v-slider>
+                                  <v-slider label="Max Fat(g):" v-bind:max="100" v-model="maxFat"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="maxFat" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Max Protein(g):" v-bind:max="500" v-model="maxProtein"></v-slider>
+                                  <v-slider label="Max Protein(g):" v-bind:max="200" v-model="maxProtein"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="maxProtein" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Min Calories:" v-bind:max="3000" v-model="minCalories"></v-slider>
+                                  <v-slider label="Min Calories:" v-bind:max="2000" v-model="minCalories"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="minCalories" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Min Carbs(g):" v-bind:max="3000" v-model="minCarbs"></v-slider>
+                                  <v-slider label="Min Carbs(g):" v-bind:max="500" v-model="minCarbs"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="minCarbs" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Min Fat(g):" v-bind:max="300" v-model="minFat"></v-slider>
+                                  <v-slider label="Min Fat(g):" v-bind:max="100" v-model="minFat"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="minFat" type="number"></v-text-field>
                                 </v-flex>
                                 <v-flex xs9>
-                                  <v-slider label="Min Protein(g):" v-bind:max="300" v-model="minProtein"></v-slider>
+                                  <v-slider label="Min Protein(g):" v-bind:max="200" v-model="minProtein"></v-slider>
                                 </v-flex>
                                 <v-flex xs3>
                                   <v-text-field v-model="minProtein" type="number"></v-text-field>
@@ -313,10 +307,10 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
-        maxCalories: '10000',
-        maxCarbs: '10000',
-        maxFat: '1000',
-        maxProtein: '1000',
+        maxCalories: '100',
+        maxCarbs: '100',
+        maxFat: '100',
+        maxProtein: '100'
         minCalories: '0',
         minCarbs: '0',
         minFat: '0',
@@ -326,7 +320,10 @@
         // For the table
         headers: [
           {
+<<<<<<< Updated upstream
             text: 'Recipe',
+            text: 'Results',
+>>>>>>> Stashed changes
             align: 'left',
             sortable: false,
             value: 'name'
@@ -420,6 +417,7 @@
         this.title = this.chosenDiet;
         this.api_call = 4;    // defined to be 4 for api called
         this.title = query;
+<<<<<<< Updated upstream
       },
 
       getRecipeFromId: function(id) {
@@ -444,6 +442,10 @@
               }
           });
       },
+      	axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false")
+      	console.log(result.status, result.headers, result.body);
+			},
+>>>>>>> Stashed changes
 
       addItem: function() {
         this.items.push({
