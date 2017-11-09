@@ -349,6 +349,9 @@
           this.api_call = 1;    // defined to be 1 for api called
           this.qres = '';   // clear previous input
           this.pres = '';   // clear previous input
+          if(this.chosenDiet != "none") {
+             dietSelection = "&diet=" + this.chosenDiet + " ";
+          }
           axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
             .then(res => {
               this.parsej(res.data);
@@ -399,7 +402,11 @@
       
       getEthnicityRecipe: function(query) {
         this.api_call = 3;    // defined to be 3 for api called
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
+        var dietSelection = "";
+        if(this.chosenDiet != "none") {
+           dietSelection = "&diet=" + this.chosenDiet;
+        }
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+dietSelection+"&number=3&offset=0&query="+query+"&type=main+course", config)
           .then(res => {
             this.parsej(res.data);
             this.qres  = res.data;
