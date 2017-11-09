@@ -239,17 +239,22 @@
                   </template>
                   <template slot="expand" scope="props">
                     <v-card flat>
-                      <v-card-text>{{props.item.name}}</v-card-text>
+                      <v-card-text>Name: {{props.item.name}}</v-card-text>
                     </v-card>
                     <v-card flat>
-                      <v-card-text>{{props.item.calories}}</v-card-text>
+                      <v-card-text>Calories: {{props.item.calories}}</v-card-text>
                     </v-card>
                     <v-card flat>
                       <v-card-text>
+<<<<<<< Updated upstream
 
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
                         -->
 						<a v-on:click="getRecipeFromId(foodid)"v-bind:href="props.item.link" target="_blank" ><img v-bind:src="props.item.image"/></a>
+=======
+						            <a v-bind:href="props.item.link" target="_blank">
+                        <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
+>>>>>>> Stashed changes
                       </v-card-text>
                     </v-card>
                                         <v-card flat>
@@ -324,7 +329,7 @@
         // For the table
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: 'Recipe',
             align: 'left',
             sortable: false,
             value: 'name'
