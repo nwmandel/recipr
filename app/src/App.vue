@@ -246,15 +246,12 @@
                     </v-card>
                     <v-card flat>
                       <v-card-text>
-<<<<<<< Updated upstream
-
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
                         -->
-						<a v-on:click="getRecipeFromId(foodid)"v-bind:href="props.item.link" target="_blank" ><img v-bind:src="props.item.image"/></a>
-=======
+						<!--<a v-on:click="getRecipeFromId(foodid)"v-bind:href="props.item.link" target="_blank" ><img v-bind:src="props.item.image"/></a>
+            -->
 						            <a v-bind:href="props.item.link" target="_blank">
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
->>>>>>> Stashed changes
                       </v-card-text>
                     </v-card>
                                         <v-card flat>
@@ -564,10 +561,10 @@
             case 5:
                 if (key === "extendedIngredients") {
                   for (let j = 0; j < val.length; j++) {
+                    // puts current id into foodid
                     this.foodid = val[j].id;
-                    //TODO put the link in imlink
-                    //result of getEtnicityRecipes is in ethres.txt
-                    //this.imlink.push(val[j].imageURLs);
+
+                    // adds the link to original recipe
                     this.items.push({
                       link: val[j].sourceUrl
                     });
