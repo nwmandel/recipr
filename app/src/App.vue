@@ -164,7 +164,7 @@
               -->
 
             <!--Dietary Needs Selection-->
-              <v-container fluid>
+              <v-container fluid v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'">
                  <v-flex xs6>
                    <v-subheader>Dietary Restrictions</v-subheader>
                  </v-flex>
