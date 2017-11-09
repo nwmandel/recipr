@@ -1,0 +1,6 @@
+Definition of Done:
+
+- Peer reviewed
+- Merged on master branch
+- Clean code and documented/ commented
+- Tested well

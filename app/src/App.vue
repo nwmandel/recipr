@@ -73,10 +73,14 @@
                         v-model="input">
                       </v-text-field>
 
-                       <v-text-field v-if="lastClicked == 'Ingredients'"
+                      <v-select v-if="lastClicked == 
+                      'Ingredients'"
+                        v-model="ingredArray"
                         label="Ingredients"
-                        v-model="input">
-                      </v-text-field>
+                        chips
+                        tags
+                        :items="sampleIngredients">    
+                      </v-select>
 
                        <v-text-field v-if="lastClicked == 'Ethnicity'"
                         label="Query"
@@ -231,9 +235,6 @@
                       <td class="text-xs-right">{{ props.item.fat }}</td>
                       <td class="text-xs-right">{{ props.item.carbs }}</td>
                       <td class="text-xs-right">{{ props.item.protein }}</td>
-                      <td class="text-xs-right">{{ props.item.sodium }}</td>
-                      <td class="text-xs-right">{{ props.item.calcium }}</td>
-                      <td class="text-xs-right">{{ props.item.iron }}</td>
                     </tr>
                   </template>
                   <template slot="expand" scope="props">
@@ -297,6 +298,14 @@
         imlink: [],  //array for the image links
         input: '',
         buttonClicked: false,
+        ingredArray: [],
+        ingredList: "",
+        sampleIngredients: [
+          'Banana',
+          'Chicken',
+          'Dill',
+          'Orange'
+        ],
         lastClicked: '',
         chosenCuisines: [],
         cuisines: [
@@ -324,9 +333,6 @@
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Sodium (mg)', value: 'sodium' },
-          { text: 'Calcium (%)', value: 'calcium' },
-          { text: 'Iron (%)', value: 'iron' }
         ],
         items: [
         ]
@@ -361,6 +367,7 @@
       getIngredientsRecipe: function(query) {
         // TODO need to parse search bar input and have %2C in between each word
         this.api_call = 2;    // defined to be 2 for api called
+        /*
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
             this.parsej(res.data);
@@ -378,8 +385,12 @@
                 console.log('Error', err.message);
               }
             })
-        this.title = this.chosenDiet;
+        */
+        // Changes title right now
+        this.ingredList = this.ingredArray.join(", ");
+        this.title= this.ingredList;
       },
+      
       getEthnicityRecipe: function(query) {
         this.api_call = 3;    // defined to be 3 for api called
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
@@ -452,7 +463,7 @@
         
         for (let i = 0; i < 3; i++) {
           if (this.items !== null) 
-            this.items.pop();   // pop the last 3 items returned
+            this.items.pop();    // pop the last 3 items returned
             this.imlink.pop();   // clear image link
             this.rlink.pop();    // clear recipe link
         }
