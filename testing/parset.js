@@ -1,7 +1,7 @@
 //var input = require('./out1.json');
 var axios = require('axios');
-const mkey = require('./mashapekey.json');
-var out = require('./ingredres.json');
+const mkey = require('./../mashapekey.json');
+var out = require('./recipeid.json');
   
 var config = {
     headers: {
@@ -17,14 +17,20 @@ var parsej = (input) => {
 	for (let i = 0; i < keys.length; i++) {
 		var key = keys[i];
 		var val = parsing[key];
-		if (val.id !== null) {
-			console.log(val.id);
-			console.log(val.title);
-			console.log(val.image);
-		}
-		if (key === "Recipes") {
+		//console.log(key);
 
-			// loops over each recipe in json 
+		if (key === "sourceUrl") {
+			console.log(val);
+		}
+
+		//if (val.id !== null) {
+			//console.log(val.id);
+			//console.log(val.title);
+			//console.log(val.image);
+		//}
+		/*if (key === "Recipes") {
+
+		// loops over each recipe in json 
 			for (let j = 0; j < val.length; j++) {
 				console.log(val[j].name);	// returns name
 				console.log(val[j].link);	// returns link
@@ -35,7 +41,7 @@ var parsej = (input) => {
 				console.log(val[j].dataPoints[3].value+"\n");
 				console.log(val[j].dataPoints[4].value+"\n");
 			}
-		}
+		}*/
 	}
 }
 

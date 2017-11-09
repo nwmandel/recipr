@@ -192,7 +192,7 @@
               <v-container fluid grid-list-xl v-if="lastClicked == 'Ingredients'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
-                    <v-btn color="info" class="button-xs-center" v-on:click="getIngredientsRecipe(input)">Search   
+                    <v-btn color="info" class="button-xs-center" v-on:click="getIngredientsRecipe()">Search   
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -248,10 +248,13 @@
                       <v-card-text>
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
                         -->
-						<!--<a v-on:click="getRecipeFromId(foodid)"v-bind:href="props.item.link" target="_blank" ><img v-bind:src="props.item.image"/></a>
-            -->
+						<v-btn v-on:click="getRecipeFromId(foodid)" target="_blank"></v-btn>
+            <a v-bin:href="items.link">{{ rlink }}</a>
+            <!--
 						            <a v-bind:href="props.item.link" target="_blank">
+                        -->
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
+                        <a v-bind:href="rlink"/></a>
                       </v-card-text>
                     </v-card>
                                         <v-card flat>
@@ -366,10 +369,11 @@
             })
       },
 
-      getIngredientsRecipe: function(query) {
+      getIngredientsRecipe: function() {
         // TODO need to parse search bar input and have %2C in between each word
         this.api_call = 2;    // defined to be 2 for api called
-        /*
+        //this.ingredList = this.ingredArray.join("%2C ");
+        
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
             this.parsej(res.data);
@@ -387,10 +391,10 @@
                 console.log('Error', err.message);
               }
             })
-        */
+
         // Changes title right now
-        this.ingredList = this.ingredArray.join(", ");
-        this.title= this.ingredList;
+        //this.ingredList = this.ingredArray.join(", ");
+        //this.title= this.ingredList;
       },
       
       getEthnicityRecipe: function(query) {
@@ -422,9 +426,10 @@
         this.title = query;
       },
 
-      getRecipeFromId: function(id) {
+      getRecipeFromId: function(id_) {
+        this.foodid = id_;
         this.api_call = 5;    // defined to be 5 for api called
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information?includeNutrition=false")
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id_+"/information?includeNutrition=false",config)
           .then(res => {
             this.parsej(res.data);
             this.qres = res.data;
@@ -443,6 +448,9 @@
                 console.log('Error', err.message);
               }
           });
+            console.log(this.foodid);
+            console.log(this.link);
+            console.log(this.rlink);
       },
 
       addItem: function() {
@@ -559,17 +567,16 @@
 
             // 5 is for getRecipeFromId
             case 5:
-                if (key === "extendedIngredients") {
-                  for (let j = 0; j < val.length; j++) {
-                    // puts current id into foodid
-                    this.foodid = val[j].id;
-
+              if (key === "sourceUrl") {
                     // adds the link to original recipe
                     this.items.push({
-                      link: val[j].sourceUrl
+                      link: val
                     });
-                  }
+                    this.rlink = val;
                 }
+                // puts current id into foodid
+                this.rlink.push(val[j].sourceUrl);
+            
 
             default:
               console.log("error in parsing");
