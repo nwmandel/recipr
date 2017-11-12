@@ -349,10 +349,11 @@
           this.api_call = 1;    // defined to be 1 for api called
           this.qres = '';   // clear previous input
           this.pres = '';   // clear previous input
+          var dietSelection = "";
           if(this.chosenDiet != "none") {
-             dietSelection = "&diet=" + this.chosenDiet + " ";
+             dietSelection = this.chosenDiet + " ";
           }
-          axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
+          axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+dietSelection+query, config)
             .then(res => {
               this.parsej(res.data);
               this.qres = res.data;
