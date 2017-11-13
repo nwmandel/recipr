@@ -96,7 +96,7 @@
                     
                     </v-flex>
                   </v-layout>
-
+                  <!-- Nutrients Selection Sliders -->
                       <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
                          <v-card-text> 
                             <v-container fluid grid-list-md>
@@ -407,7 +407,8 @@
         if(this.chosenDiet != "none") {
            dietSelection = "&diet=" + this.chosenDiet;
         }
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+dietSelection+"&number=3&offset=0&query="+query+"&type=main+course", config)
+        var cuisineString = this.chosenCuisines.join("%2C");
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+"&number=3&offset=0&query="+query+"&type=main+course", config)
           .then(res => {
             this.parsej(res.data);
             this.qres  = res.data;
