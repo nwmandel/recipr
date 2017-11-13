@@ -262,11 +262,17 @@
                       <v-card-text>
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
                         
-                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>-->
-                        <!-- TODO make the link appear after a button is pressed
-                        -->
+                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>
                         <a v-bin:href="items.link">{{ rlink }}</a>
-						            <a v-bind:href="props.item.link" target="_blank">
+                        -->
+
+                        <div v-if="props.item.link !== 'wat.com'">
+						              <!-- TODO make the link appear after a button is pressed
+                          -->
+                        </div>
+                        <div v-else> 
+                          <a v-bind:href="props.item.link" target="_blank"></a>
+                        </div>
                         
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
                       </v-card-text>
@@ -388,11 +394,10 @@
               } else {
                 console.log('Error', err.message);
               }
-            })
+            });
       },
 
       getIngredientsRecipe: function() {
-        // TODO need to parse search bar input and have %2C in between each word
         this.api_call = 2;    // defined to be 2 for api called
         this.ingredList = this.ingredArray.join("%2C ");
         
@@ -412,12 +417,7 @@
               } else {
                 console.log('Error', err.message);
               }
-            })
-
-        // Changes title right now
-        //this.ingredList = this.ingredArray.join("%2C ");
-        //this.ingredList = this.ingredArray.join(", ");
-        //this.title= this.ingredList;
+            });
       },
       
       getEthnicityRecipe: function(query) {
@@ -449,7 +449,7 @@
               } else {
                 console.log('Error', err.message);
               }
-            })
+            });
         //console.log(this.chosenCuisines);
       },
       getNutrientsRecipe: function(query) {
@@ -458,6 +458,8 @@
         this.title = query;
       },
 
+      // api call that takes in recipe id and we'll use it to
+      // get the link to the original recipe 
       getRecipeFromId: function(id_) {
         this.foodid = id_;
         this.api_call = 5;    // defined to be 5 for api called
@@ -501,9 +503,9 @@
       
       parsej: function(input) {
         
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < this.items.length; i++) {
           if (this.items !== null) 
-            this.items.pop();    // pop the last 3 items returned
+            this.items.pop();    // pop each of the elements in items
             this.imlink.pop();   // clear image link
             this.rlink.pop();    // clear recipe link
         }
@@ -599,14 +601,14 @@
             case 5:
               console.log("got to this part of [1]\n");
               if (key === "sourceUrl") {
-              console.log("got to this part of [2]\n");
+                console.log("got to this part of [2]\n");
 
-                    // adds the link to original recipe
-                    this.rlink = val;
+                  // adds the link to original recipe
+                  this.rlink = val;
                 }
-            console.log("foodid is: "+this.foodid);
-            console.log("link is: "+this.link);
-            console.log("rlink is: "+this.rlink);
+                console.log("foodid is: "+this.foodid);
+                console.log("link is: "+this.link);
+                console.log("rlink is: "+this.rlink);
 
             default:
               console.log("error in parsing");
