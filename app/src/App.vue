@@ -396,7 +396,7 @@
         this.api_call = 2;    // defined to be 2 for api called
         //this.ingredList = this.ingredArray.join("%2C ");
         
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredArray+"&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
             this.parsej(res.data);
             this.qres = res.data;
@@ -415,8 +415,9 @@
             })
 
         // Changes title right now
+        this.ingredList = this.ingredArray.join("%2C ");
         //this.ingredList = this.ingredArray.join(", ");
-        //this.title= this.ingredList;
+        this.title= this.ingredList;
       },
       
       getEthnicityRecipe: function(query) {
