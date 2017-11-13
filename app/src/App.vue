@@ -177,6 +177,20 @@
                       bottom
                    ></v-select>
                 </v-flex>
+                 <v-flex xs6>
+                   <v-subheader>Intolerances</v-subheader>
+                 </v-flex>
+                   <v-flex xs12 sm6>
+                      <v-select
+                         label=""
+                         v-bind:items="intolerances"
+                         v-model="chosenIntolerances"
+                         multiple
+                         max-height="400"
+                         hint="Select one or more of the following"
+                         persistent-hint
+                      ></v-select>
+                  </v-flex>
               </v-container fluid>
 
             <!--Search Button-->
@@ -316,6 +330,10 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
+        chosenIntolerances: [],
+        intolerances: [
+           'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
+        ],
         maxCalories: '10000',
         maxCarbs: '10000',
         maxFat: '1000',
@@ -408,7 +426,11 @@
            dietSelection = "&diet=" + this.chosenDiet;
         }
         var cuisineString = this.chosenCuisines.join("%2C");
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+"&number=3&offset=0&query="+query+"&type=main+course", config)
+        var intoleranceString = "";
+        if(this.chosenIntolerances.length > 0){
+           intoleranceString = "&intolerances=" + this.chosenIntolerances.join("%2C");
+        }
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type=main+course", config)
           .then(res => {
             this.parsej(res.data);
             this.qres  = res.data;
