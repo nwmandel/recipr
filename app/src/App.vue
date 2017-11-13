@@ -261,13 +261,13 @@
                     <v-card flat>
                       <v-card-text>
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
-                        -->
-                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>
+                        
+                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>-->
                         <!-- TODO make the link appear after a button is pressed
-
+                        -->
                         <a v-bin:href="items.link">{{ rlink }}</a>
 						            <a v-bind:href="props.item.link" target="_blank">
-                        -->
+                        
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
                       </v-card-text>
                     </v-card>
@@ -394,7 +394,7 @@
       getIngredientsRecipe: function() {
         // TODO need to parse search bar input and have %2C in between each word
         this.api_call = 2;    // defined to be 2 for api called
-        //this.ingredList = this.ingredArray.join("%2C ");
+        this.ingredList = this.ingredArray.join("%2C ");
         
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredArray+"&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
@@ -415,9 +415,9 @@
             })
 
         // Changes title right now
-        this.ingredList = this.ingredArray.join("%2C ");
+        //this.ingredList = this.ingredArray.join("%2C ");
         //this.ingredList = this.ingredArray.join(", ");
-        this.title= this.ingredList;
+        //this.title= this.ingredList;
       },
       
       getEthnicityRecipe: function(query) {
