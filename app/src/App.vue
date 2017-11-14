@@ -285,13 +285,18 @@
                         <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>
                         <a v-bin:href="items.link">{{ rlink }}</a>
                         -->
-                        <div v-if="props.item.link === 'wat.com'">
+                        <div v-if="props.item.link == 'wat.com'">
+
+                          
+                          getRecipeFromId(props.item.id)
+
                         <!-- TODO make the link appear after a button is pressed
                         -->
                         </div>
                         <div v-else> 
-                          <a v-bind:href="props.item.link" target="_blank"></a>
+                          <a v-bind:href="props.item.link" target="_blank">Click here</a>
                         </div>
+
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
                       </v-card-text>
                     </v-card>
@@ -423,7 +428,7 @@
         this.api_call = 2;     // defined to be 2 for api called
         this.ingredList = this.ingredArray.join("%2C ");
         
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredArray+"&limitLicense=false&number=3&ranking=1", config)
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredList+"&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
             this.parsej(res.data);
             this.qres = res.data;
@@ -597,6 +602,7 @@
                   this.pres += val.title;
                   this.imlink.push(val.image);
                   this.items.push({
+                    food_id: val.id,
                     value: false,
                     name: val.title,
                     calories: 50,
@@ -617,10 +623,8 @@
               if (key === "results") {
                 for (let j = 0; j < val.length; j++) {
                   this.foodid = val[j].id;
-                  //TODO put the link in imlink
-                  //result of getEtnicityRecipes is in ethres.txt
-                  //this.imlink.push(val[j].imageURLs);
                   this.items.push({
+                    food_id: val.id,
                     value: false,
                     name: val[j].title,
                     calories: 10,
@@ -641,15 +645,14 @@
             case 4:
             // 5 is for getRecipeFromId
             case 5:
-              console.log("got to this part of [1]\n");
               if (key === "sourceUrl") {
-                console.log("got to this part of [2]\n");
                   // adds the link to original recipe
                   this.rlink = val;
+                  this.items.push({
+                    link: val
+                  });
                 }
-                console.log("foodid is: "+this.foodid);
-                console.log("link is: "+this.link);
-                console.log("rlink is: "+this.rlink);
+              break;
 
             default:
               console.log("error in parsing");
@@ -661,3 +664,6 @@
   }
 
 </script>
+<style>
+
+</style>
