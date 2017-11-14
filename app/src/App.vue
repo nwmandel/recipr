@@ -90,7 +90,7 @@
                         v-model="input">
                       </v-text-field>
 
-<<<<<<< HEAD
+
                     
                     </v-flex>
                   </v-layout>
@@ -153,7 +153,6 @@
                         </v-container fluid>
 
                 
-=======
                       <!--Nutrients search bar--> 
                       <v-text-field v-if="lastClicked == 'Nutrients'"
                         label="Query"
@@ -219,7 +218,6 @@
                       </v-container>
                     </v-card-text>
                   </v-container fluid>
->>>>>>> 52c025b0b1534947fa48175515e924a026172999
                 </v-container>
               </v-card-text>
               
@@ -409,17 +407,12 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
         chosenIntolerances: [],
         intolerances: [
            'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
         ],
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
         maxCalories: '',
         maxCarbs: '',
         maxFat: '',
@@ -428,13 +421,7 @@
         minCarbs: '',
         minFat: '',
         minProtein: '',
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
         diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
         chosenDiet: 'none',
         
