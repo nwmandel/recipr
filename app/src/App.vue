@@ -95,71 +95,15 @@
                     </v-flex>
                   </v-layout>
 
-                      <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
-                         <v-card-text> 
-                            <v-container fluid grid-list-md>
-                              <v-layout row wrap>
-                                <v-flex xs9>
-                                  <v-slider label="Max Calories:" v-bind:max="2000" v-model="maxCalories"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="maxCalories" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Max Carbs(g):" v-bind:max="500" v-model="maxCarbs"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="maxCarbs" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Max Fat(g):" v-bind:max="100" v-model="maxFat"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="maxFat" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Max Protein(g):" v-bind:max="200" v-model="maxProtein"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="maxProtein" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Min Calories:" v-bind:max="2000" v-model="minCalories"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="minCalories" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Min Carbs(g):" v-bind:max="500" v-model="minCarbs"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="minCarbs" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Min Fat(g):" v-bind:max="100" v-model="minFat"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="minFat" type="number"></v-text-field>
-                                </v-flex>
-                                <v-flex xs9>
-                                  <v-slider label="Min Protein(g):" v-bind:max="200" v-model="minProtein"></v-slider>
-                                </v-flex>
-                                <v-flex xs3>
-                                  <v-text-field v-model="minProtein" type="number"></v-text-field>
-                                </v-flex>
-                              </v-layout>
-                            </v-container>
-                          </v-card-text>
-                        </v-container fluid>
-
                 
-                      <!--Nutrients search bar--> 
+                      <!--Nutrients search bar- 
                       <v-text-field v-if="lastClicked == 'Nutrients'"
                         label="Query"
                         v-model="input">
                       </v-text-field>
                     </v-flex>
                   </v-layout>
+                  -->
 
                 <!-- Nutrients Selection Sliders -->
                 <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
@@ -695,8 +639,6 @@
 
             // 4 is for getNutrientsRecipe
             case 4:
-            	if (key ===)
-
             // 5 is for getRecipeFromId
             case 5:
               console.log("got to this part of [1]\n");
