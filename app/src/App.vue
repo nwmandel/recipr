@@ -409,35 +409,42 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
-<<<<<<< HEAD
-        maxCalories: '100',
-        maxCarbs: '100',
-        maxFat: '100',
-        maxProtein: '100'
-=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
         chosenIntolerances: [],
         intolerances: [
            'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
         ],
-        maxCalories: '10000',
-        maxCarbs: '10000',
-        maxFat: '1000',
-        maxProtein: '1000',
->>>>>>> 52c025b0b1534947fa48175515e924a026172999
-        minCalories: '0',
-        minCarbs: '0',
-        minFat: '0',
-        minProtein: '0',
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+        maxCalories: '',
+        maxCarbs: '',
+        maxFat: '',
+        maxProtein: '',
+        minCalories: '',
+        minCarbs: '',
+        minFat: '',
+        minProtein: '',
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
         chosenDiet: 'none',
         
         // For the table
         headers: [
           {
-<<<<<<< Updated upstream
+
             text: 'Recipe',
             text: 'Results',
->>>>>>> Stashed changes
+
             align: 'left',
             sortable: false,
             value: 'name'
@@ -540,10 +547,26 @@
 
       // api call for nutrients section 
       getNutrientsRecipe: function(query) {
-        this.title = this.chosenDiet;
         this.api_call = 4;    // defined to be 4 for api called
-        this.title = query;
-<<<<<<< Updated upstream
+        	axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false", config)
+
+        	.then(res => {
+        		this.parsej(res.data);
+        		this.qres = res.data;
+        		console.log(res.status, res.headers);
+        	})
+
+        	.catch((err) => {
+        		if (err.res) {
+        			console.log(err.res.data);
+        			console.log(err.res.status);
+        			console.log(err.res.headers);
+        		} else if (err.req) {
+        			console.log(err.req);
+        		} else {
+        			console.log('Error', err.message);
+        		}
+        	})
       },
 
       // api call that takes in recipe id and we'll use it to
@@ -573,10 +596,7 @@
           });
             
       },
-      	axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false")
-      	console.log(result.status, result.headers, result.body);
-			},
->>>>>>> Stashed changes
+      
 
       // Sample adding item call to table
       addItem: function() {
@@ -688,6 +708,7 @@
 
             // 4 is for getNutrientsRecipe
             case 4:
+            	if (key ===)
 
             // 5 is for getRecipeFromId
             case 5:
