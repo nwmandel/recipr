@@ -47,13 +47,14 @@
             <!--Search Bar area-->
             <v-container fluid v-if="buttonClicked">
               <v-card-text>
+                
                 <v-container fluid>
                   <v-layout row>
                     <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients' || lastClicked == 'Nutrients'">
                       <v-subheader>Search</v-subheader>
                     </v-flex>
-
-
+                    
+                    <!--Ethnicity menu-->
                     <v-flex xs12 sm6 v-if="lastClicked == 'Ethnicity'">
                        <v-select
                           label="Select"
@@ -67,12 +68,13 @@
                     </v-flex>
 
                     <v-flex xs8>
-                      
+                      <!--Recipe search bar-->
                       <v-text-field v-if="lastClicked === 'Recipe'"
                         label="Recipe"
                         v-model="input">
                       </v-text-field>
-
+                      
+                      <!--Ingredients search bar-->
                       <v-select v-if="lastClicked == 
                       'Ingredients'"
                         v-model="ingredArray"
@@ -82,11 +84,13 @@
                         :items="sampleIngredients">    
                       </v-select>
 
-                       <v-text-field v-if="lastClicked == 'Ethnicity'"
+                      <!--Ethnicity search bar-->
+                      <v-text-field v-if="lastClicked == 'Ethnicity'"
                         label="Query"
                         v-model="input">
                       </v-text-field>
 
+<<<<<<< HEAD
                     
                     </v-flex>
                   </v-layout>
@@ -149,31 +153,118 @@
                         </v-container fluid>
 
                 
+=======
+                      <!--Nutrients search bar--> 
+                      <v-text-field v-if="lastClicked == 'Nutrients'"
+                        label="Query"
+                        v-model="input">
+                      </v-text-field>
+                    </v-flex>
+                  </v-layout>
+
+                <!-- Nutrients Selection Sliders -->
+                <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
+                   <v-card-text> 
+                      <v-container fluid grid-list-md>
+                        <v-layout row wrap>
+                          <v-flex xs9>
+                            <v-slider label="Max Calories:" v-bind:max="5000" v-model="maxCalories"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="maxCalories" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Max Carbs(g):" v-bind:max="5000" v-model="maxCarbs"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="maxCarbs" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Max Fat(g):" v-bind:max="500" v-model="maxFat"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="maxFat" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Max Protein(g):" v-bind:max="500" v-model="maxProtein"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="maxProtein" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Min Calories:" v-bind:max="3000" v-model="minCalories"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="minCalories" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Min Carbs(g):" v-bind:max="3000" v-model="minCarbs"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="minCarbs" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Min Fat(g):" v-bind:max="300" v-model="minFat"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="minFat" type="number"></v-text-field>
+                          </v-flex>
+                          <v-flex xs9>
+                            <v-slider label="Min Protein(g):" v-bind:max="300" v-model="minProtein"></v-slider>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-text-field v-model="minProtein" type="number"></v-text-field>
+                          </v-flex>
+                        </v-layout>
+                      </v-container>
+                    </v-card-text>
+                  </v-container fluid>
+>>>>>>> 52c025b0b1534947fa48175515e924a026172999
                 </v-container>
               </v-card-text>
+              
+
               <!--
               <p>Input is {{input}}</p>
               <p>Query Result is {{qres}}</p>
               <p>Parsed result is {{pres}}</p>
               -->
-
-            <!--Dietary Needs Selection-->
+              <!--Dietary Needs Selection-->
               <v-container fluid v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'">
-                 <v-flex xs6>
-                   <v-subheader>Dietary Restrictions</v-subheader>
-                 </v-flex>
-                 <v-flex xs6>
-                   <v-select
-                      v-bind:items="diets"
-                      v-model="chosenDiet"
-                      label="Select"
-                      single-line
-                      bottom
+                 <!--Dietary Section-->
+                <v-flex xs6>
+                  <v-subheader>Dietary Restrictions</v-subheader>
+                </v-flex>
+                <v-flex xs6>
+                  <v-select
+                    v-bind:items="diets"
+                    v-model="chosenDiet"
+                    label="Select"
+                    single-line
+                    bottom
                    ></v-select>
+                </v-flex>
+                 
+                <!--Intolerances Section--> 
+                <v-flex xs6>
+                  <v-subheader>Intolerances</v-subheader>
+                </v-flex>
+                <v-flex xs12 sm6>
+                  <v-select
+                    label=""
+                    v-bind:items="intolerances"
+                    v-model="chosenIntolerances"
+                    multiple
+                    max-height="400"
+                    hint="Select one or more of the following"
+                    persistent-hint
+                  ></v-select>
                 </v-flex>
               </v-container fluid>
 
-            <!--Search Button-->
+              <!--Api call section for doing calls in Vue object-->
+              <!--Search Buttons for various api calls doing api call when clicked-->
+              <!--Recipe api call-->
               <v-container fluid grid-list-xl v-if="lastClicked == 'Recipe'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
@@ -183,15 +274,19 @@
                   </v-flex>
                 </v-layout>
               </v-container>
+              
+              <!--Ingredients api call-->
               <v-container fluid grid-list-xl v-if="lastClicked == 'Ingredients'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
-                    <v-btn color="info" class="button-xs-center" v-on:click="getIngredientsRecipe(input)">Search   
+                    <v-btn color="info" class="button-xs-center" v-on:click="getIngredientsRecipe()">Search   
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
                 </v-layout>
               </v-container>
+              
+              <!--Ethnicity api call-->
               <v-container fluid grid-list-xl v-if="lastClicked == 'Ethnicity'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
@@ -201,6 +296,8 @@
                   </v-flex>
                 </v-layout>
               </v-container>
+              
+              <!--Nutrients api call-->
               <v-container fluid grid-list-xl v-if="lastClicked == 'Nutrients'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
@@ -212,8 +309,8 @@
               </v-container>
             </v-container>  
 
-              
-        
+            <!--Food table section-->
+            <!--Shows all the foods that come up in whatever search is done with buttons-->
             <div id="foodTable">
                 <v-data-table
                     v-bind:headers="headers"
@@ -231,6 +328,8 @@
                       <td class="text-xs-right">{{ props.item.protein }}</td>
                     </tr>
                   </template>
+                  
+                  <!--This shows up when an item in table is clicked-->
                   <template slot="expand" scope="props">
                     <v-card flat>
                       <v-card-text>Name: {{props.item.name}}</v-card-text>
@@ -241,16 +340,19 @@
                     <v-card flat>
                       <v-card-text>
                         <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
+                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>
+                        <a v-bin:href="items.link">{{ rlink }}</a>
                         -->
-						<!--<a v-on:click="getRecipeFromId(foodid)"v-bind:href="props.item.link" target="_blank" ><img v-bind:src="props.item.image"/></a>
-            -->
-						            <a v-bind:href="props.item.link" target="_blank">
+                        <div v-if="props.item.link === 'wat.com'">
+                        <!-- TODO make the link appear after a button is pressed
+                        -->
+                        </div>
+                        <div v-else> 
+                          <a v-bind:href="props.item.link" target="_blank"></a>
+                        </div>
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
                       </v-card-text>
                     </v-card>
-                                        <v-card flat>
-                    </v-card>
-
                   </template>
                 </v-data-table>
             </div>
@@ -290,8 +392,8 @@
         title: 'Recipr',
         qres: '',
         pres: '',
-        rlink: [],     //array for recepie links
-        imlink: [],  //array for the image links
+        rlink: [],     //array for recipe links
+        imlink: [],    //array for the image links
         input: '',
         buttonClicked: false,
         ingredArray: [],
@@ -307,16 +409,28 @@
         cuisines: [
            'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
         ],
+<<<<<<< HEAD
         maxCalories: '100',
         maxCarbs: '100',
         maxFat: '100',
         maxProtein: '100'
+=======
+        chosenIntolerances: [],
+        intolerances: [
+           'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
+        ],
+        maxCalories: '10000',
+        maxCarbs: '10000',
+        maxFat: '1000',
+        maxProtein: '1000',
+>>>>>>> 52c025b0b1534947fa48175515e924a026172999
         minCalories: '0',
         minCarbs: '0',
         minFat: '0',
         minProtein: '0',
         diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
         chosenDiet: 'none',
+        
         // For the table
         headers: [
           {
@@ -341,9 +455,13 @@
     methods: {
       getSiteRecipe: function(query) {  
           this.api_call = 1;    // defined to be 1 for api called
-          this.qres = '';   // clear previous input
-          this.pres = '';   // clear previous input
-          axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+query, config)
+          this.qres = '';       // clear previous input
+          this.pres = '';       // clear previous input
+          var dietSelection = "";
+          if(this.chosenDiet != "none") {
+             dietSelection = this.chosenDiet + " ";
+          }
+          axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+dietSelection+query, config)
             .then(res => {
               this.parsej(res.data);
               this.qres = res.data;
@@ -360,14 +478,14 @@
               } else {
                 console.log('Error', err.message);
               }
-            })
+            });
       },
 
-      getIngredientsRecipe: function(query) {
-        // TODO need to parse search bar input and have %2C in between each word
-        this.api_call = 2;    // defined to be 2 for api called
-        /*
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=3&ranking=1", config)
+      getIngredientsRecipe: function() {
+        this.api_call = 2;     // defined to be 2 for api called
+        this.ingredList = this.ingredArray.join("%2C ");
+        
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredArray+"&limitLicense=false&number=3&ranking=1", config)
           .then(res => {
             this.parsej(res.data);
             this.qres = res.data;
@@ -383,23 +501,29 @@
               } else {
                 console.log('Error', err.message);
               }
-            })
-        */
-        // Changes title right now
-        this.ingredList = this.ingredArray.join(", ");
-        this.title= this.ingredList;
+            });
       },
       
       getEthnicityRecipe: function(query) {
         this.api_call = 3;    // defined to be 3 for api called
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+this.chosenCuisines+"&number=3&offset=0&query="+query+"&type=main+course", config)
+        var dietSelection = "";
+        if(this.chosenDiet != "none") {
+           dietSelection = "&diet=" + this.chosenDiet;
+        }
+        var cuisineString = this.chosenCuisines.join("%2C");
+        var intoleranceString = "";
+        if(this.chosenIntolerances.length > 0){
+           intoleranceString = "&intolerances=" + this.chosenIntolerances.join("%2C");
+        }
+        
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type=main+course", config)
           .then(res => {
             this.parsej(res.data);
             this.qres  = res.data;
             console.log(res.status, res.header);   
           })
 
-          // catch errors and print messages to log
+            // catch errors and print messages to log
             .catch((err) => {
               if (err.res) {
                 console.log(err.res.data);
@@ -410,9 +534,11 @@
               } else {
                 console.log('Error', err.message);
               }
-            })
-        //console.log(this.chosenCuisines);
+            });
+          //console.log(this.chosenCuisines);
       },
+
+      // api call for nutrients section 
       getNutrientsRecipe: function(query) {
         this.title = this.chosenDiet;
         this.api_call = 4;    // defined to be 4 for api called
@@ -420,16 +546,20 @@
 <<<<<<< Updated upstream
       },
 
-      getRecipeFromId: function(id) {
+      // api call that takes in recipe id and we'll use it to
+      // get the link to the original recipe 
+      getRecipeFromId: function(id_) {
+        this.foodid = id_;
         this.api_call = 5;    // defined to be 5 for api called
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information?includeNutrition=false")
+        
+        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id_+"/information?includeNutrition=false",config)
           .then(res => {
             this.parsej(res.data);
             this.qres = res.data;
             console.log(res.status, res.header);   
           })
 
-          // catch errors and print messages to log
+            // catch errors and print messages to log
             .catch((err) => {
               if (err.res) {
                 console.log(err.res.data);
@@ -441,12 +571,14 @@
                 console.log('Error', err.message);
               }
           });
+            
       },
       	axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false")
       	console.log(result.status, result.headers, result.body);
 			},
 >>>>>>> Stashed changes
 
+      // Sample adding item call to table
       addItem: function() {
         this.items.push({
           value: false,
@@ -462,12 +594,10 @@
         });
       },
 
-      
-      parsej: function(input) {
-        
-        for (let i = 0; i < 3; i++) {
+      parsej: function(input) {        
+        for (let i = 0; i < this.items.length; i++) {
           if (this.items !== null) 
-            this.items.pop();    // pop the last 3 items returned
+            this.items.pop();    // pop each of the elements in items
             this.imlink.pop();   // clear image link
             this.rlink.pop();    // clear recipe link
         }
@@ -478,18 +608,21 @@
 
         // loop over keys
         for (let i = 0; i < keys.length; i++) {
-          var key = keys[i];    // current key
-          var val = parsing[key]; // value of current key
+          var key = keys[i];       // current key
+          var val = parsing[key];  // value of current key
           // if val.id exists then its probably the ingredients call
           switch(this.api_call) {
+            
             // 1 is for getSiteRecipe
             case 1:
-                if (key === "Recipes") {    // if we reach recipes, then parse needed data below
+                // if we reach recipes, then parse needed data below
+                if (key === "Recipes") {
                   // loops over each recipe in json 
                   for (let j = 0; j < val.length; j++) {
-                    this.pres += val[j].name;   // returns name
+                    this.pres += val[j].name;        // returns name
                     this.rlink.push(val[j].link);
-                    this.imlink.push(val[j].image);  // adds to array of image links
+                    // adds to array of image links
+                    this.imlink.push(val[j].image);
                     this.items.push({
                       value: false,
                       name: val[j].name,
@@ -506,7 +639,6 @@
                    }
                 }
                 break;
-
 
             // 2 is for getIngredients
             case 2: 
@@ -528,7 +660,6 @@
                   });
                 }
                 break;
-
 
             // 3 is for getEthnicityRecipe
             case 3: 
@@ -555,23 +686,20 @@
               }
               break;
 
-
             // 4 is for getNutrientsRecipe
             case 4:
 
             // 5 is for getRecipeFromId
             case 5:
-                if (key === "extendedIngredients") {
-                  for (let j = 0; j < val.length; j++) {
-                    // puts current id into foodid
-                    this.foodid = val[j].id;
-
-                    // adds the link to original recipe
-                    this.items.push({
-                      link: val[j].sourceUrl
-                    });
-                  }
+              console.log("got to this part of [1]\n");
+              if (key === "sourceUrl") {
+                console.log("got to this part of [2]\n");
+                  // adds the link to original recipe
+                  this.rlink = val;
                 }
+                console.log("foodid is: "+this.foodid);
+                console.log("link is: "+this.link);
+                console.log("rlink is: "+this.rlink);
 
             default:
               console.log("error in parsing");
@@ -579,8 +707,6 @@
           }
         }
       }
-
-
     }
   }
 
