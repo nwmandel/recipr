@@ -24,10 +24,7 @@ export default {
       ingredArray: [],
       ingredList: "",
       sampleIngredients: [
-        'Banana',
-        'Chicken',
-        'Dill',
-        'Orange'
+        'Egg', 'Butter', 'Milk', 'Flour', 'Cheese', 'Rice', 'Onion', 'Garlic', 'Sugar', 'Salt', 'Pepper', 'Vegetable Oil', 'Olive Oil'
       ],
       lastClicked: '',
       chosenCuisines: [],
