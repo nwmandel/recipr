@@ -286,13 +286,12 @@
                         <a v-bin:href="items.link">{{ rlink }}</a>
                         -->
                         <div v-if="props.item.link == 'wat.com'">
-
-                          
-                          getRecipeFromId(props.item.id)
+                         <v-btn color="info">Link</v-btn>
 
                         <!-- TODO make the link appear after a button is pressed
                         -->
                         </div>
+                        
                         <div v-else> 
                           <a v-bind:href="props.item.link" target="_blank">Click here</a>
                         </div>
