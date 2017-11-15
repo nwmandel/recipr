@@ -283,16 +283,19 @@ export default {
           case 3: 
             if (key === "results") {
               for (let j = 0; j < val.length; j++) {
-                this.curr_id = val[j].id;
+                this.foodid = val[j].id;
                 this.items.push({
-                  food_id: val.id,
+                  food_id: val[j].id,
                   value: false,
                   name: val[j].title,
                   calories: 10,
                   fat: 10,
                   carbs: 10,
                   protein: 10,
-                  image: val[j].imageURLs,
+                  sodium: 9000,
+                  calcium: '9000%',
+                  iron: '9000%',
+                  image: "https://spoonacular.com/recipeImages/" + val[j].image,
                   link: 'wat.com'
                 });
               }
@@ -340,35 +343,35 @@ export default {
       this.items.push({
         food_id: 1,
         value: false,
-        name: 'name1',
+        name: 'In-N-Out Burger Copycat',
         calories: 10,
         fat: 11,
         carbs: 12,
         protein: 13,
-        image: 'image1',
-        link: 'wat1.com'
+        image: 'https://spoonacular.com/recipeImages/In-N-Out-Burger-Copycat-485845.jpg',
+        link: 'wat.com'
       });
       this.items.push({
         food_id: 2,
         value: false,
-        name: 'name2',
+        name: 'BBQ Burgers \"Jibarito Style\"',
         calories: 20,
         fat: 21,
         carbs: 22,
         protein: 23,
-        image: 'image2',
-        link: 'wat2.com'
+        image: 'https://spoonacular.com/recipeImages/BBQ-Burgers-Jibarito-Style-268478.jpg',
+        link: 'wat.com'
       });
       this.items.push({
         food_id: 3,
         value: false,
-        name: 'name3',
+        name: 'The All American Classic Bacon Cheese Burger',
         calories: 30,
         fat: 31,
         carbs: 32,
         protein: 33,
-        image: 'image3',
-        link: 'wat3.com'
+        image: 'https://spoonacular.com/recipeImages/The-All-American-Classic-Bacon-Cheese-Burger-480050.jpg',
+        link: 'wat.com'
       });
     }
 
