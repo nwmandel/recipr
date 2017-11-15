@@ -57,7 +57,7 @@
                     <!--Ethnicity menu-->
                     <v-flex xs12 sm6 v-if="lastClicked == 'Ethnicity'">
                        <v-select
-                          label="Select"
+                          label="Ethnicity"
                           v-bind:items="cuisines"
                           v-model="chosenCuisines"
                           multiple
