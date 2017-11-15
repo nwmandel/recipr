@@ -40,14 +40,14 @@ export default {
          'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
       ],
 
-      maxCalories: '',
-      maxCarbs: '',
-      maxFat: '',
-      maxProtein: '',
-      minCalories: '',
-      minCarbs: '',
-      minFat: '',
-      minProtein: '',
+      maxCalories: '2000',
+      maxCarbs: '400',
+      maxFat: '100',
+      maxProtein: '250',
+      minCalories: '0',
+      minCarbs: '0',
+      minFat: '0',
+      minProtein: '0',
 
       diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
       chosenDiet: 'none',
@@ -160,7 +160,7 @@ export default {
     },
 
     // api call for nutrients section 
-    getNutrientsRecipe: function(query) {
+    getNutrientsRecipe: function() {
       this.api_call = 4;    // defined to be 4 for api called
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false", config)
 
