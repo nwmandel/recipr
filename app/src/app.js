@@ -13,7 +13,7 @@ export default {
   data () {
     return {
       api_call: 0,
-      foodid: 556470,
+      curr_id: 0,
       title: 'Recipr',
       qres: '',
       pres: '',
@@ -83,6 +83,7 @@ export default {
           .then(res => {
             this.parsej(res.data);
             this.qres = res.data;
+            this.api_limit(res);
             console.log(res.status, res.header);
           })
           // catch errors and print messages to log
@@ -94,7 +95,7 @@ export default {
             } else if (err.req) {
               console.log(err.req);
             } else {
-              console.log('Error', err.message);
+              console.log('Error in getSiteRecipe: ', err.message);
             }
           });
     },
@@ -107,6 +108,7 @@ export default {
         .then(res => {
           this.parsej(res.data);
           this.qres = res.data;
+          this.api_limit(res);
           console.log(res.status, res.header);
         })
         .catch((err) => {
@@ -117,7 +119,7 @@ export default {
             } else if (err.req) {
               console.log(err.req);
             } else {
-              console.log('Error', err.message);
+              console.log('Error in getIngredientsRecipe: ', err.message);
             }
           });
     },
@@ -138,6 +140,7 @@ export default {
         .then(res => {
           this.parsej(res.data);
           this.qres  = res.data;
+          this.api_limit(res);
           console.log(res.status, res.header);   
         })
 
@@ -153,7 +156,6 @@ export default {
               console.log('Error', err.message);
             }
           });
-        //console.log(this.chosenCuisines);
     },
 
     // api call for nutrients section 
@@ -164,6 +166,7 @@ export default {
         .then(res => {
           this.parsej(res.data);
           this.qres = res.data;
+          this.api_limit(res);
           console.log(res.status, res.headers);
         })
 
@@ -175,7 +178,7 @@ export default {
           } else if (err.req) {
             console.log(err.req);
           } else {
-            console.log('Error', err.message);
+            console.log('Error in getNutrientsRecipe: ', err.message);
           }
         })
     },
@@ -183,13 +186,14 @@ export default {
     // api call that takes in recipe id and we'll use it to
     // get the link to the original recipe 
     getRecipeFromId: function(id_) {
-      this.foodid = id_;
-      this.api_call = 5;    // defined to be 5 for api called
+      this.curr_id = id_;
+      this.api_call = 4;    // defined to be 5 for api called
       
       axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id_+"/information?includeNutrition=false",config)
         .then(res => {
           this.parsej(res.data);
           this.qres = res.data;
+          this.api_limit(res);
           console.log(res.status, res.header);   
         })
 
@@ -202,27 +206,10 @@ export default {
             } else if (err.req) {
               console.log(err.req);
             } else {
-              console.log('Error', err.message);
+              console.log('Error in getRecipeFromId: ', err.message);
             }
         });
           
-    },
-    
-
-    // Sample adding item call to table
-    addItem: function() {
-      this.items.push({
-        value: false,
-        name: 'AddingExample',
-        calories: '9000',
-        fat: '9000',
-        carbs: 9000,
-        protein: 9000,
-        sodium: 9000,
-        calcium: '9000%',
-        iron: '9000%',
-        image: 'https://d30y9cdsu7xlg0.cloudfront.net/png/9711-200.png'
-      });
     },
 
     parsej: function(input) {        
@@ -261,9 +248,6 @@ export default {
                     fat: parseFloat(val[j].dataPoints[3].value),
                     carbs: parseFloat(val[j].dataPoints[4].value),
                     protein: parseFloat(val[j].dataPoints[2].value),
-                    sodium: 9000,
-                    calcium: '9000%',
-                    iron: '9000%',
                     image: val[j].image,
                     link: val[j].link
                   });
@@ -284,9 +268,6 @@ export default {
                   fat: 1,
                   carbs: 10,
                   protein: 9,
-                  sodium: 9000,
-                  calcium: '9000%',
-                  iron: '9000%',
                   image: val.image,
                   link: "wat.com"
                 });
@@ -297,7 +278,7 @@ export default {
           case 3: 
             if (key === "results") {
               for (let j = 0; j < val.length; j++) {
-                this.foodid = val[j].id;
+                this.curr_id = val[j].id;
                 this.items.push({
                   food_id: val.id,
                   value: false,
@@ -306,9 +287,6 @@ export default {
                   fat: 10,
                   carbs: 10,
                   protein: 10,
-                  sodium: 9000,
-                  calcium: '9000%',
-                  iron: '9000%',
                   image: val[j].imageURLs,
                   link: 'wat.com'
                 });
@@ -316,10 +294,8 @@ export default {
             }
             break;
 
-          // 4 is for getNutrientsRecipe
+          // 4 is for getRecipeFromId
           case 4:
-          // 5 is for getRecipeFromId
-          case 5:
             if (key === "sourceUrl") {
                 // adds the link to original recipe
                 this.rlink = val;
@@ -334,6 +310,22 @@ export default {
             break;
         }
       }
+    },
+
+    api_limit: (callback) => {
+      var input_ = JSON.stringify(callback); // turn return header
+      var parsing = JSON.parse(input_);   // parse the string
+      var keys = Object.keys(parsing);    // get keys from json
+      for (let i = 0; i < keys.length; i++) {
+        var key = keys[i];       // current key
+        var val = parsing[key];  // value of current key
+        if (i==3){
+          // prints information about requests remaining
+          console.log(val);
+        }
+      }
     }
+
+
   }
 }

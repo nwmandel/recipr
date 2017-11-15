@@ -287,14 +287,14 @@
                         <a v-bin:href="items.link">{{ rlink }}</a>
                         -->
                         <div v-if="props.item.link == 'wat.com'">
-                         <v-btn color="info">Link</v-btn>
+                         <v-btn color="info">Get Link</v-btn>
 
                         <!-- TODO make the link appear after a button is pressed
                         -->
                         </div>
                         
                         <div v-else> 
-                          <a v-bind:href="props.item.link" target="_blank">Click here</a>
+                          <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
                         </div>
 
                         <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
@@ -302,11 +302,6 @@
                     </v-card>
                   </template>
                 </v-data-table>
-            </div>
-            
-            <div class="text-xs-center">
-              <v-btn round color="primary" dark
-              v-on:click="addItem">Add</v-btn>
             </div>
 
         </v-container>
