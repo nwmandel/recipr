@@ -65,6 +65,10 @@ export default {
         { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Protein (g)', value: 'protein' },
       ],
+      
+      // Holds actual items from the api calls
+      // Currently holds food_id, value, name, calories,
+      // fat, carbs, protein, image, and link of the item
       items: [
       ]
     }
@@ -212,6 +216,7 @@ export default {
           
     },
 
+
     parsej: function(input) {        
       for (let i = 0; i < this.items.length; i++) {
         if (this.items !== null) 
@@ -324,8 +329,48 @@ export default {
           console.log(val);
         }
       }
-    }
+    },
+     // Clears the item array
+    clearArray: function() {
+      this.items = [];
+    },
 
+    // Sets the items array as a set sample one
+    setArray: function() {
+      this.items.push({
+        food_id: 1,
+        value: false,
+        name: 'name1',
+        calories: 10,
+        fat: 11,
+        carbs: 12,
+        protein: 13,
+        image: 'image1',
+        link: 'wat1.com'
+      });
+      this.items.push({
+        food_id: 2,
+        value: false,
+        name: 'name2',
+        calories: 20,
+        fat: 21,
+        carbs: 22,
+        protein: 23,
+        image: 'image2',
+        link: 'wat2.com'
+      });
+      this.items.push({
+        food_id: 3,
+        value: false,
+        name: 'name3',
+        calories: 30,
+        fat: 31,
+        carbs: 32,
+        protein: 33,
+        image: 'image3',
+        link: 'wat3.com'
+      });
+    }
 
   }
 }

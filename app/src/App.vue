@@ -305,6 +305,20 @@
             </div>
 
         </v-container>
+
+        <!--Debugging-->
+        <div>
+          <p>Debug Section</p>
+          <p>index - food_id - item.link</p>
+          <ul id="debugSection">
+            <li v-for="(item, index) in items">
+              {{ index }} - {{ item.food_id }} - {{ item.link }}
+            </li>
+          </ul>
+          <v-btn color="info" v-on:click="clearArray">Clear Array</v-btn>
+          <v-btn color="info" v-on:click="setArray">Set Sample Array</v-btn>
+        </div>
+
       </v-content>
     </main>
     
