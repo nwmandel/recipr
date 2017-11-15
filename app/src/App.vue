@@ -61,7 +61,7 @@
                           v-bind:items="cuisines"
                           v-model="chosenCuisines"
                           multiple
-                          max-height="400"
+                          max-height="225"
                           hint="Select one or more of the following"
                           persistent-hint
                        ></v-select>
@@ -78,7 +78,8 @@
                       <v-select v-if="lastClicked == 
                       'Ingredients'"
                         v-model="ingredArray"
-                        label="Ingredients"
+                        max-height="225"
+                        label="Ingredients: Pick from menu or type your own and press enter"
                         chips
                         tags
                         :items="sampleIngredients">    
