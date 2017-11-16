@@ -112,49 +112,49 @@
                       <v-container fluid grid-list-md>
                         <v-layout row wrap>
                           <v-flex xs9>
-                            <v-slider label="Max Calories:" v-bind:max="5000" v-model="maxCalories"></v-slider>
+                            <v-slider label="Max Calories:" v-bind:max="2000" v-model="maxCalories"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxCalories" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Max Carbs(g):" v-bind:max="5000" v-model="maxCarbs"></v-slider>
+                            <v-slider label="Max Carbs(g):" v-bind:max="500" v-model="maxCarbs"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxCarbs" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Max Fat(g):" v-bind:max="500" v-model="maxFat"></v-slider>
+                            <v-slider label="Max Fat(g):" v-bind:max="300" v-model="maxFat"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxFat" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Max Protein(g):" v-bind:max="500" v-model="maxProtein"></v-slider>
+                            <v-slider label="Max Protein(g):" v-bind:max="300" v-model="maxProtein"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxProtein" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Min Calories:" v-bind:max="3000" v-model="minCalories"></v-slider>
+                            <v-slider label="Min Calories:" v-bind:max="0" v-model="minCalories"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="minCalories" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Min Carbs(g):" v-bind:max="3000" v-model="minCarbs"></v-slider>
+                            <v-slider label="Min Carbs(g):" v-bind:max="0" v-model="minCarbs"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="minCarbs" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Min Fat(g):" v-bind:max="300" v-model="minFat"></v-slider>
+                            <v-slider label="Min Fat(g):" v-bind:max="0" v-model="minFat"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="minFat" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Min Protein(g):" v-bind:max="300" v-model="minProtein"></v-slider>
+                            <v-slider label="Min Protein(g):" v-bind:max="0" v-model="minProtein"></v-slider>
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="minProtein" type="number"></v-text-field>
