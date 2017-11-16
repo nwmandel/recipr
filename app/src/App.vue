@@ -202,6 +202,14 @@
                 </v-flex>
               </v-container fluid>
 
+              <!--Minimze or Maximize Ingredients Checkbox-->
+              <v-container fluid v-if="lastClicked == 'Ingredients'">
+                <v-checkbox
+                   label="Prioritize maximizing the use of your ingredients (Uncheck to prioritize minimizing the use of missing ingredients)"
+                   v-model="checkbox"
+                 ></v-checkbox>
+              </v-container fluild>
+
               <!--Api call section for doing calls in Vue object-->
               <!--Search Buttons for various api calls doing api call when clicked-->
               <!--Recipe api call-->
