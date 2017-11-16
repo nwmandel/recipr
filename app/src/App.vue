@@ -268,8 +268,7 @@
                     item-key="name"
                   >
                   <template slot="items" slot-scope="props">
-                     <tr @click="props.expanded = !props.expanded; lastClicked= props.index; 
-                     lastClickedID = items[lastClicked].food_id; lastClickedName = items[lastClicked].name"> 
+                     <tr @click="props.expanded = !props.expanded; lastClicked= props.index; lastClickedID = props.item.food_id"> 
                       <td>{{ props.item.name }}</td>
                       <td class="text-xs-right">{{ props.item.calories }}</td>
                       <td class="text-xs-right">{{ props.item.fat }}</td>
@@ -296,7 +295,9 @@
                         <div v-else> 
                           <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
                         </div>
-
+                        
+                        <!--Can remove this later. Only for debugging.-->
+                        <p> Food ID: {{props.item.food_id}}</p>
                         <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
                       </v-card-text>
                     </v-card>
@@ -317,7 +318,7 @@
             </li>
           </ul>
           <p> Last Index Clicked: {{lastClicked}}</p>
-          <p> Last Index's Name: {{lastClickedName}}</p>
+          <p> Last Index's ID: {{lastClickedID}}</p>
           <v-btn color="info" v-on:click="clearArray">Clear Array</v-btn>
           <v-btn color="info" v-on:click="setArray">Set Sample Array</v-btn>
         </div>

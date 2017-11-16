@@ -28,6 +28,7 @@ export default {
         'Egg', 'Butter', 'Milk', 'Flour', 'Cheese', 'Rice', 'Onion', 'Garlic', 'Sugar', 'Salt', 'Pepper', 'Vegetable Oil', 'Olive Oil'
       ],
       lastClicked: '',
+      lastClickedID: '',
       chosenCuisines: [],
       cuisines: [
          'African', 'American','British','Cajun', 'Caribbean', 'Chinese', 'Eastern European', 'French', 'German', 'Greek', 'Indian', 'Irish', 'Italian', 'Japanese', 'Jewish', 'Korean', 'Latin American','Mexican', 'Middle eastern', 'Nordic', 'Southern', 'Spanish', 'Thai', 'Vietnamese'
