@@ -286,26 +286,21 @@
                     <v-card flat>
                       <v-card-text>Calories: {{props.item.calories}}</v-card-text>
                     </v-card>
+
+                    <!-- Button to make second api call to get link of recipe -->
                     <v-card flat>
                       <v-card-text>
-                        <!--<a v-onhref="props.item.link" onclick="getRecipeFromId(foodid); return false;"/></a>
-                        <v-btn v-on:click="getRecipeFromId(foodid)"></v-btn>
-                        <a v-bin:href="items.link">{{ rlink }}</a>
-                        -->
                         <div v-if="props.item.link == 'wat.com'">
                          <v-btn color="info">Get Link</v-btn>
-
-                        <!-- TODO make the link appear after a button is pressed
-                        -->
                         </div>
-                        
                         <div v-else> 
                           <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
                         </div>
 
-						<img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
+                        <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
                       </v-card-text>
                     </v-card>
+
                   </template>
                 </v-data-table>
             </div>

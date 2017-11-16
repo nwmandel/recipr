@@ -14,7 +14,7 @@ export default {
     return {
       api_call: 0,
       curr_id: 0,
-	  curr_source: '',
+      curr_source: '',
       title: 'Recipr',
       qres: '',
       pres: '',
@@ -77,6 +77,7 @@ export default {
   },
 
   methods: {
+    // simple site search api call
     getSiteRecipe: function(query) {  
         this.api_call = 1;    // defined to be 1 for api called
         this.qres = '';       // clear previous input
@@ -106,6 +107,7 @@ export default {
           });
     },
 
+    // api call to search for recipes given specified ingredients
     getIngredientsRecipe: function() {
       this.api_call = 2;     // defined to be 2 for api called
       this.ingredList = this.ingredArray.join("%2C ");
@@ -135,6 +137,7 @@ export default {
           });
     },
     
+    // api call to search for recipes based on ethnicity/country
     getEthnicityRecipe: function(query) {
       this.api_call = 3;    // defined to be 3 for api called
       var dietSelection = "";
@@ -192,7 +195,7 @@ export default {
           } else {
             console.log('Error in getNutrientsRecipe: ', err.message);
           }
-        })
+        });
     },
 
     // api call that takes in recipe id and we'll use it to
@@ -223,14 +226,8 @@ export default {
           
     },
 
-    parsej: function(input) {        
-      for (let i = 0; i <= this.items.length; i++) {
-        if (this.items !== null) {
-          this.items.pop();    // pop each of the elements in items
-          this.imlink.pop();   // clear image link
-          this.rlink.pop();    // clear recipe link
-        }
-      }
+    parsej: function(input) { 
+      this.clearArray();    // clears display each search     
 
       var input_ = JSON.stringify(input); // turn return api call to string
       var parsing = JSON.parse(input_);   // parse the string
@@ -299,19 +296,23 @@ export default {
                   fat: 10,
                   carbs: 10,
                   protein: 10,
-                  sodium: 9000,
-                  calcium: '9000%',
-                  iron: '9000%',
                   image: "https://spoonacular.com/recipeImages/" + val[j].image,
                   link: 'wat.com'
                 });
               }
             }
             break;
+
+          // possibly an error if none of the above cases
+          default:
+            console.log("Error in parsing json");
+            break;
         }
       }
     },
 
+    // prints to console response header about 
+    // remaining api calls left of the day
     api_limit: (callback) => {
       var input_ = JSON.stringify(callback); // turn return header
       var parsing = JSON.parse(input_);   // parse the string
@@ -366,14 +367,16 @@ export default {
         link: 'wat.com'
       });
     },
-	
-	parseFromID: function(input) {
-		var input_ = JSON.stringify(input); // turn return api call to string
-		var parsing = JSON.parse(input_);   // parse the string
-		var keys = Object.keys(parsing);    // get keys from json
 
-		this.curr_source = parsing.sourceUrl; //Sets current wanted URL
-		window.open(this.curr_source);        // Opens new window for URL
-	},
+    // specific function for parsing id api call so that
+    // display does not get cleared when called
+  	parseFromID: function(input) {
+  		var input_ = JSON.stringify(input); // turn return api call to string
+  		var parsing = JSON.parse(input_);   // parse the string
+  		var keys = Object.keys(parsing);    // get keys from json
+
+  		this.curr_source = parsing.sourceUrl; //Sets current wanted URL
+  		window.open(this.curr_source);        // Opens new window for URL
+  	},
   }
 }
