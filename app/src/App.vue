@@ -118,19 +118,25 @@
                             <v-text-field v-model="maxCalories" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Max Carbs(g):" v-bind:max="500" v-model="maxCarbs"></v-slider>
+
+                            <v-slider label="Max Carbs(g):" v-bind:max="400" v-model="maxCarbs"></v-slider>
+
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxCarbs" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Max Fat(g):" v-bind:max="300" v-model="maxFat"></v-slider>
+
+                            <v-slider label="Max Fat(g):" v-bind:max="100" v-model="maxFat"></v-slider>
+
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxFat" type="number"></v-text-field>
                           </v-flex>
                           <v-flex xs9>
-                            <v-slider label="Max Protein(g):" v-bind:max="300" v-model="maxProtein"></v-slider>
+
+                            <v-slider label="Max Protein(g):" v-bind:max="250" v-model="maxProtein"></v-slider>
+
                           </v-flex>
                           <v-flex xs3>
                             <v-text-field v-model="maxProtein" type="number"></v-text-field>

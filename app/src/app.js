@@ -165,7 +165,8 @@ export default {
 
     // api call for nutrients section 
     getNutrientsRecipe: function() {
-      this.api_call = 4;    // defined to be 4 for api called
+      //this.api_call = 4;    // defined to be 4 for api called
+      this.api_call = 2; //same api call as ingredients
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false", config)
 
         .then(res => {
@@ -302,8 +303,15 @@ export default {
             }
             break;
 
+<<<<<<< Updated upstream
           // 4 is for getRecipeFromId
           case 4:
+=======
+          // 4 is for getNutrientsRecipe
+          //case 4: not needed
+          // 5 is for getRecipeFromId
+          case 5:
+>>>>>>> Stashed changes
             if (key === "sourceUrl") {
                 this.curr_source = val.sourceUrl;
 				console.log(curr_source);
