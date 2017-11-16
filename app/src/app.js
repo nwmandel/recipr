@@ -301,23 +301,6 @@ export default {
               }
             }
             break;
-
-          // 4 is for getNutrientsRecipe
-          //case 4: not needed
-          // 5 is for getRecipeFromId
-          case 5:
-
-            if (key === "sourceUrl") {
-                this.curr_source = val.sourceUrl;
-				console.log(curr_source);
-				open.window(curr_source);
-              }
-            break;
-
-          default:
-            console.log("error in parsing");
-            break;
-
         }
       }
     },
