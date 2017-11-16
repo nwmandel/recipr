@@ -224,11 +224,12 @@ export default {
     },
 
     parsej: function(input) {        
-      for (let i = 0; i < this.items.length; i++) {
-        if (this.items !== null) 
+      for (let i = 0; i <= this.items.length; i++) {
+        if (this.items !== null) {
           this.items.pop();    // pop each of the elements in items
           this.imlink.pop();   // clear image link
           this.rlink.pop();    // clear recipe link
+        }
       }
 
       var input_ = JSON.stringify(input); // turn return api call to string
