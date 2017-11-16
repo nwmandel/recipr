@@ -49,6 +49,7 @@ export default {
 
       diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
       chosenDiet: 'none',
+      checkbox: true,
       
       // For the table
       headers: [
@@ -108,8 +109,13 @@ export default {
     getIngredientsRecipe: function() {
       this.api_call = 2;     // defined to be 2 for api called
       this.ingredList = this.ingredArray.join("%2C ");
-      
-      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredList+"&limitLicense=false&number=3&ranking=1", config)
+      var ranking;
+      if(this.checkbox){
+         ranking = "&ranking=1";
+      }else{
+         ranking = "&ranking=2";
+      }
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredList+"&limitLicense=false&number=3"+ranking, config)
         .then(res => {
           this.parsej(res.data);
           this.qres = res.data;
