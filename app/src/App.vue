@@ -263,7 +263,8 @@
                     item-key="name"
                   >
                   <template slot="items" slot-scope="props">
-                     <tr @click="props.expanded = !props.expanded"> 
+                     <tr @click="props.expanded = !props.expanded; lastClicked= props.index; 
+                     lastClickedID = items[lastClicked].food_id; lastClickedName = items[lastClicked].name"> 
                       <td>{{ props.item.name }}</td>
                       <td class="text-xs-right">{{ props.item.calories }}</td>
                       <td class="text-xs-right">{{ props.item.fat }}</td>
@@ -317,6 +318,8 @@
               {{ index }} - {{ item.food_id }} - {{ item.link }}
             </li>
           </ul>
+          <p> Last Index Clicked: {{lastClicked}}</p>
+          <p> Last Index's Name: {{lastClickedName}}</p>
           <v-btn color="info" v-on:click="clearArray">Clear Array</v-btn>
           <v-btn color="info" v-on:click="setArray">Set Sample Array</v-btn>
         </div>
