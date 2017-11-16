@@ -14,6 +14,7 @@ export default {
     return {
       api_call: 0,
       curr_id: 0,
+	  curr_source: '',
       title: 'Recipr',
       qres: '',
       pres: '',
@@ -191,11 +192,11 @@ export default {
     // get the link to the original recipe 
     getRecipeFromId: function(id_) {
       this.curr_id = id_;
-      this.api_call = 4;    // defined to be 5 for api called
+     // this.api_call = 4;    // defined to be 5 for api called
       
       axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id_+"/information?includeNutrition=false",config)
         .then(res => {
-          this.parsej(res.data);
+          this.parseFromID(res.data);
           this.qres = res.data;
           this.api_limit(res);
           console.log(res.status, res.header);   
@@ -215,7 +216,6 @@ export default {
         });
           
     },
-
 
     parsej: function(input) {        
       for (let i = 0; i < this.items.length; i++) {
@@ -305,11 +305,9 @@ export default {
           // 4 is for getRecipeFromId
           case 4:
             if (key === "sourceUrl") {
-                // adds the link to original recipe
-                this.rlink = val;
-                this.items.push({
-                  link: val
-                });
+                this.curr_source = val.sourceUrl;
+				console.log(curr_source);
+				open.window(curr_source);
               }
             break;
 
@@ -373,7 +371,26 @@ export default {
         image: 'https://spoonacular.com/recipeImages/The-All-American-Classic-Bacon-Cheese-Burger-480050.jpg',
         link: 'wat.com'
       });
-    }
+    },
+	
+	parseFromID: function(input) {
+		var input_ = JSON.stringify(input); // turn return api call to string
+		var parsing = JSON.parse(input_);   // parse the string
+		var keys = Object.keys(parsing);    // get keys from json
 
+		this.curr_source = parsing.sourceUrl;
+		console.log(this.curr_source);
+		window.open(this.curr_source);
+		// loop over keys
+		/*for (let i = 0; i < keys.length; i++) {
+			var key = keys[i];       // current key
+			var val = parsing[key];  // value of current key
+			if (key === "sourceUrl") {
+                this.curr_source = val.sourceUrl;
+				console.log(curr_source);
+				open.window(curr_source);
+            }
+		}*/
+	},
   }
 }

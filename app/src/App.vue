@@ -297,7 +297,9 @@
                           <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
                         </div>
 
-                        <img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>
+                        <!--<img v-bind:src="props.item.image" style="width:150px;height:150px;"/></a>-->
+						<p> Food ID: {{props.item.food_id}}</p> 
+						<img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
                       </v-card-text>
                     </v-card>
                   </template>
