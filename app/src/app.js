@@ -30,7 +30,7 @@ export default {
       lastClicked: '',
       chosenCuisines: [],
       cuisines: [
-         'african', 'chinese', 'japanese', 'korean', 'vietnamese', 'thai', 'indian', 'british', 'irish', 'french', 'italian', 'mexican', 'spanish', 'middle eastern', 'jewish', 'american', 'cajun', 'southern', 'greek', 'german', 'nordic', 'eastern european', 'caribbean', 'latin american'
+         'African', 'American','British','Cajun', 'Caribbean', 'Chinese', 'Eastern European', 'French', 'German', 'Greek', 'Indian', 'Irish', 'Italian', 'Japanese', 'Jewish', 'Korean', 'Latin American','Mexican', 'Middle eastern', 'Nordic', 'Southern', 'Spanish', 'Thai', 'Vietnamese'
       ],
 
       chosenIntolerances: [],
@@ -193,7 +193,6 @@ export default {
     // get the link to the original recipe 
     getRecipeFromId: function(id_) {
       this.curr_id = id_;
-     // this.api_call = 4;    // defined to be 5 for api called
       
       axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id_+"/information?includeNutrition=false",config)
         .then(res => {
@@ -302,6 +301,7 @@ export default {
               }
             }
             break;
+<<<<<<< HEAD
 
 <<<<<<< Updated upstream
           // 4 is for getRecipeFromId
@@ -322,6 +322,8 @@ export default {
           default:
             console.log("error in parsing");
             break;
+=======
+>>>>>>> e3d4ac35fdd7dbf06e0fc23c18b112d7b7c3ffaf
         }
       }
     },
@@ -386,19 +388,8 @@ export default {
 		var parsing = JSON.parse(input_);   // parse the string
 		var keys = Object.keys(parsing);    // get keys from json
 
-		this.curr_source = parsing.sourceUrl;
-		console.log(this.curr_source);
-		window.open(this.curr_source);
-		// loop over keys
-		/*for (let i = 0; i < keys.length; i++) {
-			var key = keys[i];       // current key
-			var val = parsing[key];  // value of current key
-			if (key === "sourceUrl") {
-                this.curr_source = val.sourceUrl;
-				console.log(curr_source);
-				open.window(curr_source);
-            }
-		}*/
+		this.curr_source = parsing.sourceUrl; //Sets current wanted URL
+		window.open(this.curr_source);        // Opens new window for URL
 	},
   }
 }
