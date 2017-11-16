@@ -301,17 +301,12 @@ export default {
               }
             }
             break;
-<<<<<<< HEAD
 
-<<<<<<< Updated upstream
-          // 4 is for getRecipeFromId
-          case 4:
-=======
           // 4 is for getNutrientsRecipe
           //case 4: not needed
           // 5 is for getRecipeFromId
           case 5:
->>>>>>> Stashed changes
+
             if (key === "sourceUrl") {
                 this.curr_source = val.sourceUrl;
 				console.log(curr_source);
@@ -322,8 +317,7 @@ export default {
           default:
             console.log("error in parsing");
             break;
-=======
->>>>>>> e3d4ac35fdd7dbf06e0fc23c18b112d7b7c3ffaf
+
         }
       }
     },
