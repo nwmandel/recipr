@@ -79,21 +79,28 @@ export default {
 
   methods: {
     // simple site search api call
-    getSiteRecipe: function(query) {  
-        this.api_call = 1;    // defined to be 1 for api called
-        this.qres = '';       // clear previous input
-        this.pres = '';       // clear previous input
-        var dietSelection = "";
-        if(this.chosenDiet != "none") {
-           dietSelection = this.chosenDiet + " ";
-        }
-        axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/site/search?query="+dietSelection+query, config)
-          .then(res => {
-            this.parsej(res.data);
-            this.qres = res.data;
-            this.api_limit(res);
-            console.log(res.status, res.header);
-          })
+    getRecipe: function(query) {  
+      this.api_call = 3;    // defined to be 3 for api called
+      var dietSelection = "";
+      // dietary restriction
+      if(this.chosenDiet != "none") {
+         dietSelection = "&diet=" + this.chosenDiet;
+      }
+      var cuisineString = this.chosenCuisines.join("%2C");
+      var intoleranceString = "";
+      // food intolerances
+      if(this.chosenIntolerances.length > 0){
+         intoleranceString = "&intolerances=" + this.chosenIntolerances.join("%2C");
+      }
+      
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type=main+course", config)
+        .then(res => {
+          this.parsej(res.data);
+          this.qres  = res.data;
+          this.api_limit(res);
+          console.log(res.status, res.header);   
+        })
+
           // catch errors and print messages to log
           .catch((err) => {
             if (err.res) {
@@ -103,7 +110,7 @@ export default {
             } else if (err.req) {
               console.log(err.req);
             } else {
-              console.log('Error in getSiteRecipe: ', err.message);
+              console.log('Error', err.message);
             }
           });
     },
@@ -175,8 +182,7 @@ export default {
 
     // api call for nutrients section 
     getNutrientsRecipe: function() {
-      //this.api_call = 4;    // defined to be 4 for api called
-      this.api_call = 2; //same api call as ingredients
+      this.api_call = 2; //same return object as ingredients
         axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByNutrients?maxCalories="+this.maxCalories+"&maxCarbs="+this.maxCarbs+"&maxFat="+this.maxFat+"&maxProtein="+this.maxProtein+"&minCalories="+this.minCalories+"&minCarbs="+this.minCarbs+"&minFat="+this.minFat+"&minProtein="+this.minProtein+"&number=10&offset=0&random=false", config)
 
         .then(res => {
@@ -227,6 +233,7 @@ export default {
           
     },
 
+    // function that parses each api response
     parsej: function(input) { 
       this.clearArray();    // clears display each search     
 
@@ -241,29 +248,29 @@ export default {
         // if val.id exists then its probably the ingredients call
         switch(this.api_call) {
           
-          // 1 is for getSiteRecipe
-          case 1:
-              // if we reach recipes, then parse needed data below
-              if (key === "Recipes") {
-                // loops over each recipe in json 
-                for (let j = 0; j < val.length; j++) {
-                  this.pres += val[j].name;        // returns name
-                  this.rlink.push(val[j].link);
-                  // adds to array of image links
-                  this.imlink.push(val[j].image);
-                  this.items.push({
-                    value: false,
-                    name: val[j].name,
-                    calories: parseFloat(val[j].dataPoints[1].value),
-                    fat: parseFloat(val[j].dataPoints[3].value),
-                    carbs: parseFloat(val[j].dataPoints[4].value),
-                    protein: parseFloat(val[j].dataPoints[2].value),
-                    image: val[j].image,
-                    link: val[j].link
-                  });
-                 }
-              }
-              break;
+          // // 1 is for getSiteRecipe
+          // case 1:
+          //     // if we reach recipes, then parse needed data below
+          //     if (key === "Recipes") {
+          //       // loops over each recipe in json 
+          //       for (let j = 0; j < val.length; j++) {
+          //         this.pres += val[j].name;        // returns name
+          //         this.rlink.push(val[j].link);
+          //         // adds to array of image links
+          //         this.imlink.push(val[j].image);
+          //         this.items.push({
+          //           value: false,
+          //           name: val[j].name,
+          //           calories: parseFloat(val[j].dataPoints[1].value),
+          //           fat: parseFloat(val[j].dataPoints[3].value),
+          //           carbs: parseFloat(val[j].dataPoints[4].value),
+          //           protein: parseFloat(val[j].dataPoints[2].value),
+          //           image: val[j].image,
+          //           link: val[j].link
+          //         });
+          //        }
+          //     }
+          //     break;
 
           // 2 is for getIngredients
           case 2: 
@@ -284,9 +291,11 @@ export default {
               }
               break;
 
-          // 3 is for getEthnicityRecipe
+          // 3 is for getEthnicityRecipe and getRecipe
           case 3: 
+            // key result for this api response
             if (key === "results") {
+              // iterate through each value
               for (let j = 0; j < val.length; j++) {
                 this.foodid = val[j].id;
                 this.items.push({
@@ -321,6 +330,7 @@ export default {
       for (let i = 0; i < keys.length; i++) {
         var key = keys[i];       // current key
         var val = parsing[key];  // value of current key
+        // 3 is the position of response header
         if (i==3){
           // prints information about requests remaining
           console.log(val);
@@ -378,6 +388,6 @@ export default {
 
   		this.curr_source = parsing.sourceUrl; //Sets current wanted URL
   		window.open(this.curr_source);        // Opens new window for URL
-  	},
+  	}
   }
 }

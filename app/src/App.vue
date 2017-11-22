@@ -216,7 +216,7 @@
               <v-container fluid grid-list-xl v-if="lastClicked == 'Recipe'">
                 <v-layout row justify-space-around>
                   <v-flex xs2>
-                    <v-btn color="info" class="button-xs-center" v-on:click="getSiteRecipe(input)">Search  
+                    <v-btn color="info" class="button-xs-center" v-on:click="getRecipe(input)">Search  
                       <v-icon>search</v-icon>
                     </v-btn>
                   </v-flex>
@@ -299,6 +299,7 @@
                         <!--Can remove this later. Only for debugging.-->
                         <!--<p> Food ID: {{props.item.food_id}}</p>-->
 						<div class="recIm">
+                        <p> Click on image for recipe! </p>
                           <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
 						</div>
                       </v-card-text>
