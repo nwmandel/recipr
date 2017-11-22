@@ -117,7 +117,7 @@ export default {
 
     // api call to search for recipes given specified ingredients
     getIngredientsRecipe: function() {
-      this.api_call = 2;     // defined to be 2 for api called
+      this.api_call = 1;     // defined to be 1 for api called
       this.ingredList = this.ingredArray.join("%2C ");
       var ranking;
       if(this.checkbox){
@@ -271,8 +271,24 @@ export default {
           //        }
           //     }
           //     break;
+          // 1 is for getIngredients
+          case 1: 
+              {
+                this.pres += val.title;
+                this.imlink.push(val.image);
+                this.items.push({
+                  food_id: val.id,
+                  value: false,
+                  name: val.title,
+                  missing: val.missedIngredientCount,
+                  used: val.usedIngredientCount,
+                  image: val.image,
+                  link: "wat.com"
+                });
+              }
+              break;
 
-          // 2 is for getIngredients
+          // 2 is for getNutrients
           case 2: 
               {
                 this.pres += val.title;

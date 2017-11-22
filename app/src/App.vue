@@ -274,17 +274,30 @@
                       <td class="text-xs-right">{{ props.item.fat }}</td>
                       <td class="text-xs-right">{{ props.item.carbs }}</td>
                       <td class="text-xs-right">{{ props.item.protein }}</td>
+
                     </tr>
                   </template>
                   
                   <!--This shows up when an item in table is clicked-->
                   <template slot="expand" scope="props">
-                    <v-card flat>
-                      <v-card-text>Name: {{props.item.name}}</v-card-text>
-                    </v-card>
-                    <v-card flat>
-                      <v-card-text>Calories: {{props.item.calories}}</v-card-text>
-                    </v-card>
+                    <v-layout row wrap>
+                    <v-container grid-list-xl text-xs-center>
+                      <v-card flat>
+                        <v-card-text>Name: {{props.item.name}}</v-card-text>
+                      </v-card>
+                      <v-card flat>
+                        <v-card-text>Calories: {{props.item.calories}}</v-card-text>
+                      </v-card>
+
+
+                      <v-flex xs3 offset-xs6 offset-md8 offset-lg9> 
+                        <v-card dark color="primary">
+                          <v-card-text v-if="props.item.protein == null"class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
+                            <v-card-text v-if="props.item.carbs == null"class="text-xs-right">Ingredients usd: {{ props.item.used }}</v-card-text>
+                          </v-card>
+                        </v-flex>
+                      </v-container>
+                    </v-layout>
 
                     <!-- Button to make second api call to get link of recipe -->
 					<v-card flat>
