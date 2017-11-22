@@ -287,9 +287,9 @@
                     </v-card>
 
                     <!-- Button to make second api call to get link of recipe -->
-                    <v-card flat>
-                      <v-card-text>
-                        <div v-if="props.item.link == 'wat.com'">
+					<v-card flat>
+                        <v-card-text>
+                        <!--<div v-if="props.item.link == 'wat.com'">
                          <v-btn color="info">Get Link</v-btn>
                         </div>
                         <div v-else> 
@@ -297,8 +297,10 @@
                         </div>
                         
                         <!--Can remove this later. Only for debugging.-->
-                        <p> Food ID: {{props.item.food_id}}</p>
-                        <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
+                        <!--<p> Food ID: {{props.item.food_id}}</p>-->
+						<div class="recIm">
+                          <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
+						</div>
                       </v-card-text>
                     </v-card>
 
@@ -333,4 +335,4 @@
 </template>
 
 <script src="./app.js"></script>
-<style></style>
+<style src="./sty.css" ></style>

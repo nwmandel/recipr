@@ -1,0 +1,12 @@
+div.recIm>img {
+	opacity: 1.0;
+	filter: alpha(opacity=50);
+	transform: scale(1);
+	transition: .3s ease-in-out;
+}
+
+div.recIm>img:hover{
+	opacity: .5;
+	filter: alpha(opacity=100);
+	transform: scale(1.2);
+}
