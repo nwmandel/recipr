@@ -200,6 +200,21 @@
                     persistent-hint
                   ></v-select>
                 </v-flex>
+
+                <!--Type of Course Selection-->
+                <v-flex xs6>
+                  <v-subheader>Type of Recipe</v-subheader>
+                </v-flex>
+                <v-flex xs6>
+                  <v-select
+                    v-bind:items="types"
+                    v-model="chosenType"
+                    label="main course"
+                    single-line
+                    bottom
+                  ></v-select>
+                </v-flex>
+
               </v-container fluid>
 
               <!--Minimze or Maximize Ingredients Checkbox-->

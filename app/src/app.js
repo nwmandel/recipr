@@ -39,6 +39,11 @@ export default {
          'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
       ],
 
+      chosenType: '',
+      types: [
+         'main course', 'side dish', 'dessert', 'appetizer', 'salad', 'bread', 'breakfast', 'soup', 'beverage', 'sauce', 'drink'
+      ],
+
       maxCalories: '2000',
       maxCarbs: '400',
       maxFat: '100',
@@ -157,8 +162,11 @@ export default {
       if(this.chosenIntolerances.length > 0){
          intoleranceString = "&intolerances=" + this.chosenIntolerances.join("%2C");
       }
-      
-      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type=main+course", config)
+      var typeString = this.chosenType;
+      if(typeString == ""){
+         typeString = "main course";
+      }
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type="+typeString, config)
         .then(res => {
           this.parsej(res.data);
           this.qres  = res.data;
