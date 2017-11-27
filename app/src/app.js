@@ -91,7 +91,6 @@ export default {
       if(this.chosenDiet != "none") {
          dietSelection = "&diet=" + this.chosenDiet;
       }
-      var cuisineString = this.chosenCuisines.join("%2C");
       var intoleranceString = "";
       // food intolerances
       if(this.chosenIntolerances.length > 0){
@@ -115,7 +114,7 @@ export default {
             } else if (err.req) {
               console.log(err.req);
             } else {
-              console.log('Error', err.message);
+              console.log('Error in getRecipe', err.message);
             }
           });
     },
@@ -183,7 +182,7 @@ export default {
             } else if (err.req) {
               console.log(err.req);
             } else {
-              console.log('Error', err.message);
+              console.log('Error getEthnicityRecipe', err.message);
             }
           });
     },
@@ -256,8 +255,8 @@ export default {
         // if val.id exists then its probably the ingredients call
         switch(this.api_call) {
           
-          // // 1 is for getSiteRecipe
-          // case 1:
+          // // 0 is for getSiteRecipe
+          // case 0:
           //     // if we reach recipes, then parse needed data below
           //     if (key === "Recipes") {
           //       // loops over each recipe in json 
@@ -279,6 +278,7 @@ export default {
           //        }
           //     }
           //     break;
+
           // 1 is for getIngredients
           case 1: 
               {
@@ -405,13 +405,13 @@ export default {
 
     // specific function for parsing id api call so that
     // display does not get cleared when called
-  	parseFromID: function(input) {
-  		var input_ = JSON.stringify(input); // turn return api call to string
-  		var parsing = JSON.parse(input_);   // parse the string
-  		var keys = Object.keys(parsing);    // get keys from json
+    parseFromID: function(input) {
+      var input_ = JSON.stringify(input); // turn return api call to string
+      var parsing = JSON.parse(input_);   // parse the string
+      var keys = Object.keys(parsing);    // get keys from json
 
-  		this.curr_source = parsing.sourceUrl; //Sets current wanted URL
-  		window.open(this.curr_source);        // Opens new window for URL
-  	}
+      this.curr_source = parsing.sourceUrl; //Sets current wanted URL
+      window.open(this.curr_source);        // Opens new window for URL
+    }
   }
 }
