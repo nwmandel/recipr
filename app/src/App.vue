@@ -163,12 +163,6 @@
                 </v-container>
               </v-card-text>
               
-
-              <!--
-              <p>Input is {{input}}</p>
-              <p>Query Result is {{qres}}</p>
-              <p>Parsed result is {{pres}}</p>
-              -->
               <!--Dietary Needs Selection-->
               <v-container fluid v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'">
                  <!--Dietary Section-->

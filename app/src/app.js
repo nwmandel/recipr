@@ -16,8 +16,6 @@ export default {
       curr_id: 0,
       curr_source: '',
       title: 'Recipr',
-      qres: '',
-      pres: '',
       rlink: [],     //array for recipe links
       imlink: [],    //array for the image links
       input: '',
@@ -100,7 +98,6 @@ export default {
       axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type=main+course", config)
         .then(res => {
           this.parsej(res.data);
-          this.qres  = res.data;
           this.api_limit(res);
           console.log(res.status, res.header);   
         })
@@ -132,7 +129,6 @@ export default {
       axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredList+"&limitLicense=false&number=3"+ranking, config)
         .then(res => {
           this.parsej(res.data);
-          this.qres = res.data;
           this.api_limit(res);
           console.log(res.status, res.header);
         })
@@ -168,7 +164,6 @@ export default {
       axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type="+typeString, config)
         .then(res => {
           this.parsej(res.data);
-          this.qres  = res.data;
           this.api_limit(res);
           console.log(res.status, res.header);   
         })
@@ -254,35 +249,9 @@ export default {
         var val = parsing[key];  // value of current key
         // if val.id exists then its probably the ingredients call
         switch(this.api_call) {
-          
-          // // 0 is for getSiteRecipe
-          // case 0:
-          //     // if we reach recipes, then parse needed data below
-          //     if (key === "Recipes") {
-          //       // loops over each recipe in json 
-          //       for (let j = 0; j < val.length; j++) {
-          //         this.pres += val[j].name;        // returns name
-          //         this.rlink.push(val[j].link);
-          //         // adds to array of image links
-          //         this.imlink.push(val[j].image);
-          //         this.items.push({
-          //           value: false,
-          //           name: val[j].name,
-          //           calories: parseFloat(val[j].dataPoints[1].value),
-          //           fat: parseFloat(val[j].dataPoints[3].value),
-          //           carbs: parseFloat(val[j].dataPoints[4].value),
-          //           protein: parseFloat(val[j].dataPoints[2].value),
-          //           image: val[j].image,
-          //           link: val[j].link
-          //         });
-          //        }
-          //     }
-          //     break;
-
           // 1 is for getIngredients
           case 1: 
               {
-                this.pres += val.title;
                 this.imlink.push(val.image);
                 this.items.push({
                   food_id: val.id,
@@ -299,7 +268,6 @@ export default {
           // 2 is for getNutrients
           case 2: 
               {
-                this.pres += val.title;
                 this.imlink.push(val.image);
                 this.items.push({
                   food_id: val.id,
