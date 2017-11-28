@@ -34,12 +34,12 @@ export default {
 
       chosenIntolerances: [],
       intolerances: [
-         'dairy', 'egg', 'gluten', 'peanut', 'sesame', 'seafood', 'shellfish', 'soy', 'sulfite', 'tree nut', 'wheat'
+         'Dairy', 'Egg', 'Gluten', 'Peanut', 'Sesame', 'Seafood', 'Shellfish', 'Soy', 'Sulfite', 'Tree Nut', 'Wheat'
       ],
 
       chosenType: '',
       types: [
-         'main course', 'side dish', 'dessert', 'appetizer', 'salad', 'bread', 'breakfast', 'soup', 'beverage', 'sauce', 'drink'
+         'Main Course', 'Side Dish', 'Dessert', 'Appetizer', 'Salad', 'Bread', 'Breakfast', 'Soup', 'Beverage', 'Sauce', 'Drink'
       ],
 
       maxCalories: '2000',
@@ -51,7 +51,7 @@ export default {
       minFat: '0',
       minProtein: '0',
 
-      diets: ['none', 'pescatarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'vegetarian'],
+      diets: ['None', 'Pescatarian', 'Lacto-vegetarian', 'Ovo-vegetarian', 'Vegan', 'Vegetarian'],
       chosenDiet: 'none',
       checkbox: true,
       
