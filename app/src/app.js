@@ -94,8 +94,11 @@ export default {
       if(this.chosenIntolerances.length > 0){
          intoleranceString = "&intolerances=" + this.chosenIntolerances.join("%2C");
       }
-      
-      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type=main+course", config)
+      var typeString = this.chosenType;
+      if(typeString == ""){
+         typeString = "main course";
+      }      
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type="+typeString, config)
         .then(res => {
           this.parsej(res.data);
           this.api_limit(res);
