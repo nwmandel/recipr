@@ -63,13 +63,18 @@ export default {
           text: 'Results',
 
           align: 'left',
-          sortable: false,
+          sortable: true,
           value: 'name'
-        },
+        }
+        
+        // The section for the headers at the top of the table
+        // We have decided not to include this for now
+        /*
         { text: 'Calories', value: 'calories' },
         { text: 'Fat (g)', value: 'fat' },
         { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Protein (g)', value: 'protein' },
+        */
       ],
       
       // Holds actual items from the api calls

@@ -279,11 +279,14 @@
                   <template slot="items" slot-scope="props">
                      <tr @click="props.expanded = !props.expanded; lastClicked= props.index; lastClickedID = props.item.food_id"> 
                       <td>{{ props.item.name }}</td>
+                      
+                      <!-- Placeholder for the calories, fat carbs, and protein for each item 
                       <td class="text-xs-right">{{ props.item.calories }}</td>
                       <td class="text-xs-right">{{ props.item.fat }}</td>
                       <td class="text-xs-right">{{ props.item.carbs }}</td>
                       <td class="text-xs-right">{{ props.item.protein }}</td>
-
+                      -->
+                      
                     </tr>
                   </template>
                   
