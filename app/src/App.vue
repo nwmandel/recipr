@@ -292,17 +292,17 @@
                     <v-layout row wrap>
                     <v-container grid-list-xl text-xs-center>
                       <v-card flat>
-                        <v-card-text>Name: {{props.item.name}}</v-card-text>
+                        <v-card-text>Name of Recipe: {{props.item.name}}</v-card-text>
                       </v-card>
                       <v-card flat>
-                        <v-card-text>Calories: {{props.item.calories}}</v-card-text>
+                        <v-card-text v-if="props.item.calories != null">Calories: {{props.item.calories}}</v-card-text>
                       </v-card>
 
 
                       <v-flex xs3 offset-xs6 offset-md8 offset-lg9> 
-                        <v-card dark color="primary">
+                        <v-card dark color="cyan darken-2">
                           <v-card-text v-if="props.item.protein == null"class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
-                            <v-card-text v-if="props.item.carbs == null"class="text-xs-right">Ingredients usd: {{ props.item.used }}</v-card-text>
+                            <v-card-text v-if="props.item.carbs == null"class="text-xs-right">Ingredients used: {{ props.item.used }}</v-card-text>
                           </v-card>
                         </v-flex>
                       </v-container>
