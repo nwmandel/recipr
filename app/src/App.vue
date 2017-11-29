@@ -249,7 +249,7 @@
                    label="Prioritize maximizing the use of your ingredients (Uncheck to prioritize minimizing the use of missing ingredients)"
                    v-model="checkbox"
                  ></v-checkbox>
-              </v-container fluild>
+              </v-container fluid>
 
               <!--Api call section for doing calls in Vue object-->
               <!--Search Buttons for various api calls doing api call when clicked-->
@@ -362,7 +362,7 @@
                           
                           <!-Can remove this later. Only for debugging.-->
                           <!--<p> Food ID: {{props.item.food_id}}</p>-->
-    						          <div class="recIm" class=>
+    						          <div class="recIm">
                             <p> Click on image for recipe! </p>
                               <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
     						          </div>
