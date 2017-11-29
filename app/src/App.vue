@@ -11,6 +11,7 @@
         <v-container fluid>
             <!--Recipe and Ingredient Buttons-->
             <h2 class="text-xs-center">Search by</h2>
+            <p class="text-xs-center">(choose one)</p>
             <v-container grid-list-md text-xs-center>
               <v-layout row justify-center>
                   <v-card-text>
@@ -90,8 +91,6 @@
                         label="Query"
                         v-model="input">
                       </v-text-field>
-
-
                     
                     </v-flex>
                   </v-layout>
@@ -99,6 +98,7 @@
 
                 <!-- Nutrients Selection Sliders -->
                 <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
+                   <p class="text-xs-center">Provide your maximum and/or minimum requirements for Calories, Carbs, Fat, and Protein by either moving the sliders or typing values on the right.</p>
                    <v-card-text> 
                       <v-container fluid grid-list-md>
                         <v-layout row wrap>
