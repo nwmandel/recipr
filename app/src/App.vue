@@ -340,7 +340,7 @@
                       </v-flex>
 
 
-                      <v-flex xs3 offset-xs6 offset-md8 offset-lg9> 
+                      <v-flex xs4 class="pa-2"> 
                         <v-card dark color="cyan darken-2">
                           <v-card-text v-if="props.item.isIngred == true"class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
                             <v-card-text v-if="props.item.isIngred == true"class="text-xs-right">Ingredients used: {{ props.item.used }}</v-card-text>
@@ -362,7 +362,7 @@
                           
                           <!-Can remove this later. Only for debugging.-->
                           <!--<p> Food ID: {{props.item.food_id}}</p>-->
-    						          <div class="recIm">
+    						          <div class="recIm" class=>
                             <p> Click on image for recipe! </p>
                               <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
     						          </div>
