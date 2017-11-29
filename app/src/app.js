@@ -318,10 +318,6 @@ export default {
                   food_id: val[j].id,
                   value: false,
                   name: val[j].title,
-                  /*calories: 50,
-                  fat: 10,*/
-                  carbs: 100000000000,
-                  protein: 1000000000, 
                   image: "https://spoonacular.com/recipeImages/" + val[j].image,
                   link: 'wat.com'
                 });
