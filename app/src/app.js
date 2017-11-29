@@ -262,6 +262,7 @@ export default {
               {
                 this.imlink.push(val.image);
                 this.items.push({
+                  isIngred: true,
                   food_id: val.id,
                   value: false,
                   name: val.title,
@@ -278,13 +279,14 @@ export default {
               {
                 this.imlink.push(val.image);
                 this.items.push({
+                  isIngred: false,
                   food_id: val.id,
                   value: false,
                   name: val.title,
-                  calories: 50,
-                  fat: 1,
-                  carbs: 10,
-                  protein: 9,
+                  calories: val.calories,
+                  fat: val.fat,
+                  carbs: val.carbs,
+                  protein: val.protein, 
                   image: val.image,
                   link: "wat.com"
                 });
@@ -299,13 +301,14 @@ export default {
               for (let j = 0; j < val.length; j++) {
                 this.foodid = val[j].id;
                 this.items.push({
+                  isIngred: false,
                   food_id: val[j].id,
                   value: false,
                   name: val[j].title,
-                  calories: 10,
-                  fat: 10,
-                  carbs: 10,
-                  protein: 10,
+                  /*calories: 50,
+                  fat: 10,*/
+                  carbs: 100000000000,
+                  protein: 1000000000, 
                   image: "https://spoonacular.com/recipeImages/" + val[j].image,
                   link: 'wat.com'
                 });

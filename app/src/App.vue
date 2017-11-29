@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-
+  
     <v-toolbar fixed app clipped-left>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -203,7 +203,7 @@
                   <v-select
                     v-bind:items="types"
                     v-model="chosenType"
-                    label="main course"
+                    label="Main Course"
                     single-line
                     bottom
                   ></v-select>
@@ -303,15 +303,15 @@
                       </div>
                       <v-flex xs4 class="pa-2">
                         <v-card flat dark color="secondary">
-                          <v-card-text v-if="props.item.calories != null">Calories: {{props.item.calories}}</v-card-text>
+                          <v-card-text v-if="props.item.isIngred == false && props.item.calories != null">Calories: {{props.item.calories}}</v-card-text>
                         </v-card>
                       </v-flex>
 
 
                       <v-flex xs3 offset-xs6 offset-md8 offset-lg9> 
                         <v-card dark color="cyan darken-2">
-                          <v-card-text v-if="props.item.protein == null"class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
-                            <v-card-text v-if="props.item.carbs == null"class="text-xs-right">Ingredients used: {{ props.item.used }}</v-card-text>
+                          <v-card-text v-if="props.item.isIngred == true"class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
+                            <v-card-text v-if="props.item.isIngred == true"class="text-xs-right">Ingredients used: {{ props.item.used }}</v-card-text>
                           </v-card>
                         </v-flex>
                       </v-container>
@@ -365,6 +365,7 @@
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
+    
   </v-app>
 </template>
 
