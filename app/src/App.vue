@@ -1,12 +1,13 @@
 <template>
   <v-app light>
-
+    <div class = "teal lighten-4">
     <v-toolbar fixed app clipped-left>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     
     <main>
+
       <v-content>
         <v-container fluid>
             <!--Recipe and Ingredient Buttons-->
@@ -376,15 +377,17 @@
           <v-btn color="info" v-on:click="clearArray">Clear Array</v-btn>
           <v-btn color="info" v-on:click="setArray">Set Sample Array</v-btn>
         </div>
-
+      
       </v-content>
     </main>
     
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
+</div>
   </v-app>
 </template>
+
 
 <script src="./app.js"></script>
 <style src="./sty.css" ></style>
