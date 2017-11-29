@@ -1,0 +1,25 @@
+0. moved mashapekey.json into app/
+
+1. add two lines in package.json:
+	{
+  ...
+  "scripts": {
+    ...
+    "postinstall": "npm run build",
+    "start": "node server.js"
+  },
+  ...
+
+2. create server.js inside app/
+
+3. create heroku repo
+	$ heroku create <name>
+
+4. removed dist/ and mashapekey.json from gitignore
+
+5. add files and push to heroku
+	$ heroku git:remote --app <name>
+	$ heroku config:set NPM_CONFIG_PRODUCTOIN=false	// installs all dependencies
+	$ git add . && commit -a -m "adding files"	// add all files
+	$ git subtree push --prefix app heroku master 	// push app/ direcotry as root to heroku
+
