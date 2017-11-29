@@ -328,7 +328,7 @@
                             <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
                           </div>
                           
-                          <!--Can remove this later. Only for debugging.-->
+                          <!-Can remove this later. Only for debugging.-->
                           <!--<p> Food ID: {{props.item.food_id}}</p>-->
     						          <div class="recIm">
                             <p> Click on image for recipe! </p>
