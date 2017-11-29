@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
-const mkey = require('../../mashapekey.json');
+const mkey = require('../mashapekey.json');
 
 var config = {
   headers: {
@@ -40,11 +40,6 @@ export default {
       chosenType: '',
       types: [
          'Main Course', 'Side Dish', 'Dessert', 'Appetizer', 'Salad', 'Bread', 'Breakfast', 'Soup', 'Beverage', 'Sauce', 'Drink'
-      ],
-
-      excludeArray: [],
-      sampleExclusions: [
-        'Peanut', 'Coconut', 'Strawberry'
       ],
 
       maxCalories: '2000',
@@ -107,12 +102,8 @@ export default {
       var typeString = this.chosenType;
       if(typeString == ""){
          typeString = "main course";
-      }
-      var excludeString = "";
-      if(this.excludeArray.length > 0){
-         excludeString = "&excludeIngredients=" + this.excludeArray.join("%2C");
       }      
-      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"+dietSelection+excludeString+intoleranceString+"&number=5&offset=0&query="+query+"&type="+typeString, config)
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?"+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type="+typeString, config)
         .then(res => {
           this.parsej(res.data);
           this.api_limit(res);
@@ -143,7 +134,7 @@ export default {
       }else{
          ranking = "&ranking=2";
       }
-      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredList+"&limitLicense=false&number=5"+ranking, config)
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="+this.ingredList+"&limitLicense=false&number=3"+ranking, config)
         .then(res => {
           this.parsej(res.data);
           this.api_limit(res);
@@ -178,11 +169,7 @@ export default {
       if(typeString == ""){
          typeString = "main course";
       }
-      var excludeString = "";
-      if(this.excludeArray.length > 0){
-         excludeString = "&excludeIngredients=" + this.excludeArray.join("%2C");
-      }
-      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+excludeString+intoleranceString+"&number=5&offset=0&query="+query+"&type="+typeString, config)
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine="+cuisineString+dietSelection+intoleranceString+"&number=3&offset=0&query="+query+"&type="+typeString, config)
         .then(res => {
           this.parsej(res.data);
           this.api_limit(res);

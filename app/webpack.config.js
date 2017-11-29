@@ -47,7 +47,9 @@ module.exports = {
   devServer: {
     headers: { "Access-Control-Allow-Origin": "*"},
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    port: 5000,
+    compress: true
   },
   performance: {
     hints: false
