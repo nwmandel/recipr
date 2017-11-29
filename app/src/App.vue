@@ -50,8 +50,8 @@
                 
                 <v-container fluid>
                   <v-layout row>
-                    <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients' || lastClicked == 'Nutrients'">
-                      <v-subheader>Search</v-subheader>
+                    <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients'">
+                      <v-subheader>Search:</v-subheader>
                     </v-flex>
                     
                     <!--Ethnicity menu-->
@@ -163,27 +163,43 @@
                 </v-container>
               </v-card-text>
               
-              <!--Dietary Needs Selection-->
+              <!--Selections for Recipe and Ethnicity-->
               <v-container fluid v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'">
-                 <!--Dietary Section-->
-                <v-flex xs6>
-                  <v-subheader>Dietary Restrictions</v-subheader>
+              <v-layout row wrap>
+
+                <!--Type of Course Selection-->
+                <v-flex xs3>
+                  <v-subheader>Type of Recipe:</v-subheader>
                 </v-flex>
-                <v-flex xs6>
+                <v-flex xs8>
+                  <v-select
+                    v-bind:items="types"
+                    v-model="chosenType"
+                    label="main course"
+                    single-line
+                    bottom
+                  ></v-select>
+                </v-flex>
+
+                 <!--Dietary Restrictions Selection-->
+                <v-flex xs3>
+                  <v-subheader>Dietary Restrictions:</v-subheader>
+                </v-flex>
+                <v-flex xs8>
                   <v-select
                     v-bind:items="diets"
                     v-model="chosenDiet"
-                    label="Select"
+                    label="None"
                     single-line
                     bottom
                    ></v-select>
                 </v-flex>
-                 
-                <!--Intolerances Section--> 
-                <v-flex xs6>
-                  <v-subheader>Intolerances</v-subheader>
+                
+                <!--Intolerances Selection--> 
+                <v-flex xs3>
+                  <v-subheader>Intolerances:</v-subheader>
                 </v-flex>
-                <v-flex xs12 sm6>
+                <v-flex xs8>
                   <v-select
                     label=""
                     v-bind:items="intolerances"
@@ -193,12 +209,13 @@
                     hint="Select one or more of the following"
                     persistent-hint
                   ></v-select>
-                </v-flex>
+                </v-flex> 
 
-                <!--Type of Course Selection-->
-                <v-flex xs6>
-                  <v-subheader>Type of Recipe</v-subheader>
+                <!--Exclude Ingredients Selection-->
+                <v-flex xs3>
+                  <v-subheader>Exclude Ingredients:</v-subheader>
                 </v-flex>
+<<<<<<< HEAD
                 <v-flex xs6>
                   <v-select
                     v-bind:items="types"
@@ -207,8 +224,20 @@
                     single-line
                     bottom
                   ></v-select>
+=======
+                <v-flex xs8>
+                <v-select v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'"
+                  v-model="excludeArray"
+                  max-height="225"
+                  hint="Pick ingredients from menu to exclude, or type your own and press Enter."
+                  persistent-hint
+                  chips
+                  tags
+                  :items="sampleExclusions">    
+                </v-select>
+>>>>>>> 4985c6b67e0f37000467ec181e4660a0ebdaba3e
                 </v-flex>
-
+               </v-layout>
               </v-container fluid>
 
               <!--Minimze or Maximize Ingredients Checkbox-->
