@@ -1,16 +1,19 @@
 <template>
   <v-app light>
-  
+
+    <div class = "teal lighten-4">
     <v-toolbar fixed app clipped-left>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     
     <main>
+
       <v-content>
         <v-container fluid>
             <!--Recipe and Ingredient Buttons-->
             <h2 class="text-xs-center">Search by</h2>
+            <p class="text-xs-center">(choose one)</p>
             <v-container grid-list-md text-xs-center>
               <v-layout row justify-center>
                   <v-card-text>
@@ -90,8 +93,6 @@
                         label="Query"
                         v-model="input">
                       </v-text-field>
-
-
                     
                     </v-flex>
                   </v-layout>
@@ -99,6 +100,7 @@
 
                 <!-- Nutrients Selection Sliders -->
                 <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
+                   <p class="text-xs-center">Provide your maximum and/or minimum requirements for Calories, Carbs, Fat, and Protein by either moving the sliders or typing values on the right.</p>
                    <v-card-text> 
                       <v-container fluid grid-list-md>
                         <v-layout row wrap>
@@ -215,7 +217,7 @@
                 <v-flex xs3>
                   <v-subheader>Exclude Ingredients:</v-subheader>
                 </v-flex>
-<<<<<<< HEAD
+
                 <v-flex xs6>
                   <v-select
                     v-bind:items="types"
@@ -224,7 +226,8 @@
                     single-line
                     bottom
                   ></v-select>
-=======
+                  </v-flex>
+
                 <v-flex xs8>
                 <v-select v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'"
                   v-model="excludeArray"
@@ -235,7 +238,7 @@
                   tags
                   :items="sampleExclusions">    
                 </v-select>
->>>>>>> 4985c6b67e0f37000467ec181e4660a0ebdaba3e
+
                 </v-flex>
                </v-layout>
               </v-container fluid>
@@ -387,16 +390,19 @@
           <v-btn color="info" v-on:click="clearArray">Clear Array</v-btn>
           <v-btn color="info" v-on:click="setArray">Set Sample Array</v-btn>
         </div>
-
+      
       </v-content>
     </main>
     
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
-    
+
+</div>
+
   </v-app>
 </template>
+
 
 <script src="./app.js"></script>
 <style src="./sty.css" ></style>
