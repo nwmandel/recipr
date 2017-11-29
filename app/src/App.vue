@@ -279,10 +279,13 @@
                   <template slot="items" slot-scope="props">
                      <tr @click="props.expanded = !props.expanded; lastClicked= props.index; lastClickedID = props.item.food_id"> 
                       <td>{{ props.item.name }}</td>
+                      
+                      <!-- Placeholder for the calories, fat carbs, and protein for each item 
                       <td class="text-xs-right">{{ props.item.calories }}</td>
                       <td class="text-xs-right">{{ props.item.fat }}</td>
                       <td class="text-xs-right">{{ props.item.carbs }}</td>
                       <td class="text-xs-right">{{ props.item.protein }}</td>
+                      -->
 
                     </tr>
                   </template>
@@ -290,13 +293,19 @@
                   <!--This shows up when an item in table is clicked-->
                   <template slot="expand" scope="props">
                     <v-layout row wrap>
-                    <v-container grid-list-xl text-xs-center>
-                      <v-card flat>
-                        <v-card-text>Name of Recipe: {{props.item.name}}</v-card-text>
-                      </v-card>
-                      <v-card flat>
-                        <v-card-text v-if="props.item.calories != null">Calories: {{props.item.calories}}</v-card-text>
-                      </v-card>
+                    <v-container grid-list-xs text-xs-left fluid>
+                      <div class="recName">
+                        <v-flex xs4 class="pa-2"> 
+                          <v-card flat dark color="primary">
+                            <v-card-text>Name of Recipe: {{props.item.name}}</v-card-text>
+                          </v-card>
+                        </v-flex>
+                      </div>
+                      <v-flex xs4 class="pa-2">
+                        <v-card flat dark color="secondary">
+                          <v-card-text v-if="props.item.calories != null">Calories: {{props.item.calories}}</v-card-text>
+                        </v-card>
+                      </v-flex>
 
 
                       <v-flex xs3 offset-xs6 offset-md8 offset-lg9> 
@@ -309,23 +318,25 @@
                     </v-layout>
 
                     <!-- Button to make second api call to get link of recipe -->
-					<v-card flat>
+  					        <v-flex xs4 class="pa-2">
+                      <v-card flat dark color="primary">
                         <v-card-text>
                         <!--<div v-if="props.item.link == 'wat.com'">
-                         <v-btn color="info">Get Link</v-btn>
-                        </div>
-                        <div v-else> 
-                          <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
-                        </div>
-                        
-                        <!--Can remove this later. Only for debugging.-->
-                        <!--<p> Food ID: {{props.item.food_id}}</p>-->
-						<div class="recIm">
-                        <p> Click on image for recipe! </p>
-                          <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
-						</div>
-                      </v-card-text>
-                    </v-card>
+                          <v-btn color="info">Get Link</v-btn>
+                          </div>
+                          <div v-else> 
+                            <a v-bind:href="props.item.link" target="_blank">Click here for recipe!</a>
+                          </div>
+                          
+                          <!--Can remove this later. Only for debugging.-->
+                          <!--<p> Food ID: {{props.item.food_id}}</p>-->
+    						          <div class="recIm">
+                            <p> Click on image for recipe! </p>
+                              <img :src="props.item.image" v-on:click="getRecipeFromId(props.item.food_id)" style="width:150px;height:150px;"/>
+    						          </div>
+                        </v-card-text>
+                      </v-card>
+                    </v-flex>
 
                   </template>
                 </v-data-table>
