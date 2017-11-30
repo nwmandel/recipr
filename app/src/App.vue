@@ -181,7 +181,7 @@
                   <v-select
                     v-bind:items="types"
                     v-model="chosenType"
-                    label="main course"
+                    label="Main Course"
                     single-line
                     bottom
                   ></v-select>
@@ -237,14 +237,17 @@
               </div>
               </v-container fluid>
 
-              <!--Minimze or Maximize Ingredients Checkbox-->
+              <!--Minimize or Maximize Ingredients Checkbox-->
               <v-container fluid v-if="lastClicked == 'Ingredients'">
                 <div class = "yellow lighten-3">
                 <v-checkbox
                    label="Prioritize maximizing the use of your ingredients (Uncheck to prioritize minimizing the use of missing ingredients)"
                    v-model="checkbox"
                  ></v-checkbox>
+<<<<<<< Updated upstream
                  </div>
+=======
+>>>>>>> Stashed changes
               </v-container fluid>
 
               <!--Api call section for doing calls in Vue object-->
@@ -308,7 +311,7 @@
                      <tr @click="props.expanded = !props.expanded; lastClicked= props.index; lastClickedID = props.item.food_id"> 
                       <td>{{ props.item.name }}</td>
                       
-                      <!-- Placeholder for the calories, fat carbs, and protein for each item 
+                      <!-- Placeholder for the calories, fat carbs, and protein for each item >
                       <td class="text-xs-right">{{ props.item.calories }}</td>
                       <td class="text-xs-right">{{ props.item.fat }}</td>
                       <td class="text-xs-right">{{ props.item.carbs }}</td>
@@ -322,6 +325,7 @@
                   <template slot="expand" scope="props">
                     <v-layout row wrap>
                     <v-container grid-list-xs text-xs-left fluid>
+
                       <div class="recName">
                         <v-flex xs4 class="pa-2"> 
                           <v-card flat dark color="primary">
@@ -329,6 +333,7 @@
                           </v-card>
                         </v-flex>
                       </div>
+
                       <v-flex xs4 class="pa-2">
                         <v-card flat dark color="secondary">
                           <v-card-text v-if="props.item.isIngred == false && props.item.calories != null">Calories: {{props.item.calories}}</v-card-text>
@@ -338,12 +343,17 @@
 
                       <v-flex xs4 class="pa-2"> 
                         <v-card dark color="cyan darken-2">
-                          <v-card-text v-if="props.item.isIngred == true"class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
-                            <v-card-text v-if="props.item.isIngred == true"class="text-xs-right">Ingredients used: {{ props.item.used }}</v-card-text>
+                          <v-card-text v-if="props.item.isIngred == true" class="text-xs-right">Ingredients missing: {{ props.item.missing }}</v-card-text>
+                            <v-card-text v-if="props.item.isIngred == true" class="text-xs-right">Ingredients used: {{ props.item.used }}</v-card-text>
                           </v-card>
                         </v-flex>
+                     
                       </v-container>
                     </v-layout>
+
+
+                  
+
 
                     <!-- Button to make second api call to get link of recipe -->
   					        <v-flex xs4 class="pa-2">
