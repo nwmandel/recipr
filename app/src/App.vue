@@ -1,7 +1,7 @@
 <template>
   <v-app light>
 
-    <div class = "teal lighten-4">
+    <div class = "orange darken-1">
     <v-toolbar fixed app clipped-left>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -49,9 +49,9 @@
 
             <!--Search Bar area-->
             <v-container fluid v-if="buttonClicked">
-              <v-card-text>
-                
+              <v-card-text elevation-N = 3>
                 <v-container fluid>
+              <div class = "yellow lighten-3">
                   <v-layout row>
                     <v-flex xs4 v-if="lastClicked == 'Recipe' || lastClicked == 'Ingredients'">
                       <v-subheader>Search:</v-subheader>
@@ -96,10 +96,12 @@
                     
                     </v-flex>
                   </v-layout>
-
+                 </div>
+            
 
                 <!-- Nutrients Selection Sliders -->
                 <v-container fluid class="sliders" v-if="lastClicked == 'Nutrients'">
+                <div class = "yellow lighten-3">
                    <p class="text-xs-center">Provide your maximum and/or minimum requirements for Calories, Carbs, Fat, and Protein by either moving the sliders or typing values on the right.</p>
                    <v-card-text> 
                       <v-container fluid grid-list-md>
@@ -161,12 +163,14 @@
                         </v-layout>
                       </v-container>
                     </v-card-text>
+                   </div>
                   </v-container fluid>
                 </v-container>
               </v-card-text>
-              
+    
               <!--Selections for Recipe and Ethnicity-->
               <v-container fluid v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'">
+              <div class = "yellow lighten-3">
               <v-layout row wrap>
 
                 <!--Type of Course Selection-->
@@ -217,17 +221,6 @@
                 <v-flex xs3>
                   <v-subheader>Exclude Ingredients:</v-subheader>
                 </v-flex>
-
-                <v-flex xs6>
-                  <v-select
-                    v-bind:items="types"
-                    v-model="chosenType"
-                    label="Main Course"
-                    single-line
-                    bottom
-                  ></v-select>
-                  </v-flex>
-
                 <v-flex xs8>
                 <v-select v-if="lastClicked == 'Recipe' || lastClicked == 'Ethnicity'"
                   v-model="excludeArray"
@@ -241,14 +234,17 @@
 
                 </v-flex>
                </v-layout>
+              </div>
               </v-container fluid>
 
               <!--Minimze or Maximize Ingredients Checkbox-->
               <v-container fluid v-if="lastClicked == 'Ingredients'">
+                <div class = "yellow lighten-3">
                 <v-checkbox
                    label="Prioritize maximizing the use of your ingredients (Uncheck to prioritize minimizing the use of missing ingredients)"
                    v-model="checkbox"
                  ></v-checkbox>
+                 </div>
               </v-container fluid>
 
               <!--Api call section for doing calls in Vue object-->
