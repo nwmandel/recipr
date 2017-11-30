@@ -1,6 +1,7 @@
 var recipeid = require('./recipeid.json');          // searched beef recipe id
 var ethn = require('./ethres.json');                // searched chicken with ethnicity thai
 var ingred_nutr = require('./ingredres.json');      // searched apple
+var gibberish = require('./gibberish.json');        // invald stuff
 
 
 // set up for unit tests
@@ -8,7 +9,7 @@ var ingred_nutr = require('./ingredres.json');      // searched apple
 // set up for parseRecipeID
 var parseRecipeID = (input) => {
     // exercise
-    console.log("==========Result for parseRecipeID===========\n");
+    console.log("==========Result for parseRecipeID===================\n");
 	var input_ = JSON.stringify(input);
 	var parsing = JSON.parse(input_);
 	var keys = Object.keys(parsing);
@@ -19,20 +20,20 @@ var parseRecipeID = (input) => {
 
             // verify
             if (val !== "http://www.epicurious.com/recipes/food/views/Char-Grilled-Beef-Tenderloin-with-Three-Herb-Chimichurri-235342") {
-                console.log("########### ERROR IN parseRecipeID ###########");
+                console.log("########### ERROR IN parseRecipeID: "+ val+ "###########");
                 break;
             }
 			console.log("Source URL is: " + val + "\n");
 		}
 	}
     // tear down
-    console.log("===========END OF parseRecipeID===========\n");
+    console.log("===========END OF parseRecipeID=======================\n\n\n");
 }
 
 // set up parseRecpieEthnicity
 var parseRecipeEthnicity = (input) => {
     // exercise
-    console.log("==========Result for parseRecipeEthnicity===========\n");
+    console.log("==========Result for parseRecipeEthnicity===================\n");
     var input_ = JSON.stringify(input);
     var parsing = JSON.parse(input_);
     var keys = Object.keys(parsing);
@@ -46,19 +47,19 @@ var parseRecipeEthnicity = (input) => {
 
                 // verify title
                 if (val[j].title != "Thai Chicken Lettuce Wraps") {
-                    console.log("########### ERROR IN parseRecipeEthnicity in title ###########");
+                    console.log("########### ERROR IN parseRecipeEthnicity in title: "+ val[j].title+ " ###########");
                     break;
                 }
 
                 // verify image
                 if (val[j].image != "thai-chicken-lettuce-wraps-873729.jpg") {
-                    console.log("########### ERROR IN parseRecipeEthnicity in image ###########");
+                    console.log("########### ERROR IN parseRecipeEthnicity in image: "+ val[j].image+" ###########");
                     break;
                 }
 
                 // verify id
                 if (val[j].id != 873729) {
-                    console.log("########### ERROR IN parseRecipeEthnicity in id ###########");
+                    console.log("########### ERROR IN parseRecipeEthnicity in id: "+val[j].id+"###########");
                     break;
                 }
 
@@ -69,13 +70,13 @@ var parseRecipeEthnicity = (input) => {
         }
     }
     // tear down
-    console.log("===========END OF parseRecipeEthnicity===========\n");
+    console.log("===========END OF parseRecipeEthnicity=====================\n\n\n");
 }
 
 // set up parseRecipeIngredients
 var parseRecipeIngredients = (input) => {
     // exercise
-    console.log("==========Result for parseRecipeIngredients===========\n");
+    console.log("==========Result for parseRecipeIngredients===================\n");
     var input_ = JSON.stringify(input);
     var parsing = JSON.parse(input_);
     var keys = Object.keys(parsing);
@@ -85,34 +86,34 @@ var parseRecipeIngredients = (input) => {
 
         // verify title
         if (val.title != "Apple fritters") {
-            console.log("########### ERROR IN parseRecipeIngredients in title ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in title: " +val.title+" ###########");
             break;
 
         }
 
         // verify image
         if (val.image != "https://spoonacular.com/recipeImages/Apple-fritters-556470.jpg") {
-            console.log("########### ERROR IN parseRecipeIngredients in image ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in image: "+val.image+" ###########");
             break;
         }
 
         // verify id
         if (val.id != 556470) {
-            console.log("########### ERROR IN parseRecipeIngredients in id ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in id: "+ val.id+" ###########");
             break;
 
         }
 
         // verify missing ingredients count
         if (val.missedIngredientCount != 0) {
-            console.log("########### ERROR IN parseRecipeIngredients in missedIngredientCount ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in missedIngredientCount: "+val.missedIngredientCount+" ###########");
             break;
 
         }
 
         // verify used ingredients count
         if (val.usedIngredientCount != 3) {
-            console.log("########### ERROR IN parseRecipeIngredients in usedIngredientCount ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in usedIngredientCount: "+ val.usedIngredientCount+" ###########");
             break;
 
         }
@@ -124,13 +125,13 @@ var parseRecipeIngredients = (input) => {
         console.log("Used Ingredients Count: " + val.usedIngredientCount + "\n");
 
     }
-    console.log("===========END OF parseRecipeIngredients===========\n");
+    console.log("===========END OF parseRecipeIngredients=====================\n\n\n");
 }
 
 // set up for parseNutrients
 var parseNutrients = (input) => {
     // exercise
-    console.log("==========Result for parseNutrients===========\n");
+    console.log("==========Result for parseNutrients====================\n");
     var input_ = JSON.stringify(input);
     var parsing = JSON.parse(input_);
     var keys = Object.keys(parsing);
@@ -141,20 +142,20 @@ var parseNutrients = (input) => {
 
         // verify title
         if (val.title != "Apple fritters") {
-            console.log("########### ERROR IN parseRecipeIngredients in title ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in title: "+ val.title+" ###########");
             break;
 
         }
 
         // verify image
         if (val.image != "https://spoonacular.com/recipeImages/Apple-fritters-556470.jpg") {
-            console.log("########### ERROR IN parseRecipeIngredients in image ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in image: "+val.image+" ###########");
             break;
         }
 
         // verify id
         if (val.id != 556470) {
-            console.log("########### ERROR IN parseRecipeIngredients in id ###########");
+            console.log("########### ERROR IN parseRecipeIngredients in id: "+val.id+" ###########");
             break;
 
         }
@@ -165,7 +166,7 @@ var parseNutrients = (input) => {
         console.log("Recipe ID is: " + val.id + "\n");
     }
     // tear down
-    console.log("===========END OF parseNutrients===========\n");
+    console.log("===========END OF parseNutrients=====================\n\n\n");
 
 }
 
@@ -178,6 +179,12 @@ function runAllUnitTests() {
     parseRecipeIngredients(ingred_nutr);
     parseRecipeEthnicity(ethn);
     parseNutrients(ingred_nutr);
+
+
+    // gibberish test
+    console.log("\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\nBeginning Gibberish Test\n")
+    parseRecipeIngredients(gibberish);
+    parseNutrients(gibberish);
 }
 
 runAllUnitTests();
