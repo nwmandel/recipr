@@ -1,4 +1,7 @@
 0. moved mashapekey.json into app/
+  change line in app.js: 
+  const mkey = require('../mashapekey.json');
+
 
 1. add two lines in package.json:
 	{
