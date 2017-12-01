@@ -44,7 +44,7 @@ export default {
 
       excludeArray: [],
       sampleExclusions: [
-        'Peanut', 'Coconut', 'Strawberry'
+        'Peanut', 'Coconut', 'Strawberry', 'Egg', 'Soy', 'Butter', 'Oil'
       ],
 
       maxCalories: '2000',
