@@ -244,10 +244,9 @@
                    label="Prioritize maximizing the use of your ingredients (Uncheck to prioritize minimizing the use of missing ingredients)"
                    v-model="checkbox"
                  ></v-checkbox>
-<<<<<<< Updated upstream
+
                  </div>
-=======
->>>>>>> Stashed changes
+
               </v-container fluid>
 
               <!--Api call section for doing calls in Vue object-->
@@ -295,7 +294,8 @@
                   </v-flex>
                 </v-layout>
               </v-container>
-            </v-container>  
+            </v-container> 
+
 
             <!--Food table section-->
             <!--Shows all the foods that come up in whatever search is done with buttons-->
@@ -306,10 +306,13 @@
                     hide-actions
                     class="elevation-2"
                     item-key="name"
+                    no-data-text="No results to show."
                   >
+
                   <template slot="items" slot-scope="props">
                      <tr @click="props.expanded = !props.expanded; lastClicked= props.index; lastClickedID = props.item.food_id"> 
                       <td>{{ props.item.name }}</td>
+
                       
                       <!-- Placeholder for the calories, fat carbs, and protein for each item >
                       <td class="text-xs-right">{{ props.item.calories }}</td>
@@ -320,7 +323,7 @@
 
                     </tr>
                   </template>
-                  
+
                   <!--This shows up when an item in table is clicked-->
                   <template slot="expand" scope="props">
                     <v-layout row wrap>
@@ -351,10 +354,6 @@
                       </v-container>
                     </v-layout>
 
-
-                  
-
-
                     <!-- Button to make second api call to get link of recipe -->
   					        <v-flex xs4 class="pa-2">
                       <v-card flat dark color="primary">
@@ -375,8 +374,10 @@
                         </v-card-text>
                       </v-card>
                     </v-flex>
-
                   </template>
+
+
+
                 </v-data-table>
             </div>
 
