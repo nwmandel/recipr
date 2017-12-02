@@ -1,0 +1,60 @@
+Functional Testing - Dylan Davidson
+
+			Modules Tested
+
+For Ethnicity Recipe Search: 
+	Ethnicity selection option
+For both Ethnicity and General Recipe Search: 
+	Type of Recipe option, Dietary Restrictions option, Intolerances option, Exclude Ingredients option
+For Ingredients Recipe Search: 
+	Checkbox for ingredient use priority
+
+		--Ethnicity Selection Option--
+
+Equivalence Classes: 1[no ethnicities chosen], 2[one ethnicity chosen], 3[multiple ethnicities chosen], 4[some amount of ethnicities chosen with no recipe query]
+Test Cases Selected to Cover Equivalence Classes: 
+1: regular recipe search - “pasta"
+2: “pasta” search with “French” ethnicity
+3: “pasta” search with “french” and “Italian” ethnicity
+4: “French” and “Italian”ethnicities with no query
+
+		--Type of Recipe Option--
+
+Equivalence Classes: 1[no type chosen], 2[one type chosen], 3[one type chosen without a recipe query]
+Test Cases Selected to Cover Equivalence Classes:
+1: regular recipe search - “pasta” (type defaults to main course)
+2: “pasta” search with “Appetizer” type
+3: “Dessert” type chosen with no recipe search
+
+		--Dietary Restrictions Option--
+
+Equivalence Classes: 1[none chosen], 2[one restriction chosen], 3[restriction chosen with no recipe query]
+Test Cases Selected to Cover Equivalence Classes:
+1: regular recipe search - “lasagna”
+2: “lasagna” search with “Vegan” dietary restriction
+3: “Lacto-Vegetarian” dietary restriction with no recipe search
+
+		--Intolerances Option--
+
+Equivalence Classes: 1[none chosen], 2[one intolerance chosen], 3[multiple intolerances chosen], 4[some amount of intolerances chosen without recipe search query]
+Test Cases Selected to Cover Equivalence Classes:
+1: regular recipe search - “pizza”
+2: “pizza” recipe search with “gluten” intolerance
+3: “pizza” recipe search with “gluten” and “dairy” intolerances
+4: “gluten” intolerance with no recipe search
+
+		--Exclude Ingredients Option--
+
+Equivalence Classes: 1[none chosen], 2[one exclude chosen], 3[multiple excludes chosen], 4[some amount of excludes chosen without recipe search query]
+Test Cases Selected to Cover Equivalence Classes:
+1: regular recipe search - “salad”
+2: “salad” recipe search with exclude “lettuce”
+3: “salad” recipe search with excludes “lettuce”, “cabbage”, and “kale”
+4: excludes “butter”, “egg”, and “sesame” with no recipe search
+
+		--Checkbox for Ingredient Use Priority--
+
+Equivalence Classes: 1[box checked with query], 2[box unchecked with same query]
+Test Cases Selected to Cover Equivalence Classes:
+1: ingredients “butter”, “cheese”, “rice”, “garlic” with box checked
+2: ingredients “butter”, “cheese”, “rice”, “garlic” with box unchecked
