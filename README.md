@@ -14,7 +14,7 @@ Make sure you have Node (>8.7.0) and npm (>5.4.2). We used Node 8.7.0 and npm 5.
 
 ### Local Installation
 
-Linux:
+MacOS, Windows, Linux:
 Navigate to recipr/app/
 ```
 npm install
@@ -50,7 +50,7 @@ See [deploy_heroku.txt](https://github.com/nwmandel/recipr/blob/master/documents
 
 ## Built With
 
-* [Vuetify](https://vuetifyjs.com/en/) - The web framework used
+* [Vuet.js](https://vuejs.org/) - The web framework used
 * [npm](https://www.npmjs.com/) - Dependency Management
 
 ## Authors
