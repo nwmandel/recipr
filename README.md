@@ -18,7 +18,6 @@ MacOS, Windows, Linux:
 Navigate to recipr/app/
 ```
 npm install
-npm run dev
 npm run build
 ```
 
@@ -50,7 +49,7 @@ See [deploy_heroku.txt](https://github.com/nwmandel/recipr/blob/master/documents
 
 ## Built With
 
-* [Vuet.js](https://vuejs.org/) - The web framework used
+* [Vue.js](https://vuejs.org/) - The web framework used
 * [npm](https://www.npmjs.com/) - Dependency Management
 
 ## Authors
